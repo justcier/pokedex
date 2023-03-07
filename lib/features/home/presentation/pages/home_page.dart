@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
+import 'package:pokedex_rest/features/pokemon_list/presentation/pokemon_list.dart';
 
 final List<String> testPokemon = [
   "Pokemon1",
@@ -18,11 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      body: ListView.builder(
-          itemCount: testPokemon.length,
-          itemBuilder: (context, index) {
-            return ListTile(title: Text(testPokemon[index]));
-          }),
+      body: PokemonList(pokemonList: testPokemon),
       title: "Pokedex",
     );
   }
