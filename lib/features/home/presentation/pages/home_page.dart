@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
-import 'package:pokedex_rest/features/pokemon_list/presentation/pokemon_list.dart';
+import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list.dart';
 
 final List<String> testPokemon = [
   "Pokemon1",
