@@ -1,6 +1,6 @@
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon.dart';
 
-final List<Pokemon> testPokemonList = [
+final List<Pokemon> tPokemonList = [
   const Pokemon(
     pokemonName: 'Pikachu',
     pokemonImageUrl:
