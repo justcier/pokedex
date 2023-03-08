@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon.dart';
 
 class PokemonList extends StatelessWidget {
-  final List<String> pokemonList;
+  final List<Pokemon> pokemonList;
+
   const PokemonList({
     required this.pokemonList,
     Key? key,
@@ -15,8 +17,11 @@ class PokemonList extends StatelessWidget {
           return Center(
               child: SizedBox(
             height: 150,
-            width: 150,
-            child: ListTile(title: Text(pokemonList[index])),
+            width: 200,
+            child: ListTile(
+              leading: Image.network(pokemonList[index].pokemonImageUrl),
+              title: Text(pokemonList[index].pokemonName),
+            ),
           ));
         });
   }
