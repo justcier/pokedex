@@ -1,10 +1,10 @@
 import 'package:pokedex_rest/core/domain/use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon.dart';
-import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_repository.dart';
+import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_list_repository.dart';
 
 class GetAllPokemonUseCase
     implements UseCase<Future<List<Pokemon>>, NoParams?> {
-  final PokemonRepository _pokemonRepository;
+  final PokemonListRepository _pokemonRepository;
 
   GetAllPokemonUseCase(this._pokemonRepository);
 

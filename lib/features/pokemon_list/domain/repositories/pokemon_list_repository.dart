@@ -1,5 +1,5 @@
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon.dart';
 
-abstract class PokemonRepository {
+abstract class PokemonListRepository {
   Future<List<Pokemon>> getAllPokemon();
 }
