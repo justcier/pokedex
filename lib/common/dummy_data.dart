@@ -1,4 +1,4 @@
-import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon.dart';
+import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon/pokemon.dart';
 
 final List<Pokemon> testPokemonList = [
   const Pokemon(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 
 import 'features/home/presentation/pages/home_page.dart';
 
 void main() {
+  configureInjector();
   runApp(const MyApp());
 }
 
