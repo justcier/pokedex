@@ -20,7 +20,7 @@ PokemonList _$PokemonListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PokemonList {
-  List<Pokemon> get data => throw _privateConstructorUsedError;
+  List<Pokemon> get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $PokemonListCopyWith<$Res> {
           PokemonList value, $Res Function(PokemonList) then) =
       _$PokemonListCopyWithImpl<$Res, PokemonList>;
   @useResult
-  $Res call({List<Pokemon> data});
+  $Res call({List<Pokemon> results});
 }
 
 /// @nodoc
@@ -50,12 +50,12 @@ class _$PokemonListCopyWithImpl<$Res, $Val extends PokemonList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? results = null,
   }) {
     return _then(_value.copyWith(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
+      results: null == results
+          ? _value.results
+          : results // ignore: cast_nullable_to_non_nullable
               as List<Pokemon>,
     ) as $Val);
   }
@@ -69,7 +69,7 @@ abstract class _$$_PokemonListCopyWith<$Res>
       __$$_PokemonListCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Pokemon> data});
+  $Res call({List<Pokemon> results});
 }
 
 /// @nodoc
@@ -83,12 +83,12 @@ class __$$_PokemonListCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = null,
+    Object? results = null,
   }) {
     return _then(_$_PokemonList(
-      data: null == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
+      results: null == results
+          ? _value._results
+          : results // ignore: cast_nullable_to_non_nullable
               as List<Pokemon>,
     ));
   }
@@ -97,24 +97,24 @@ class __$$_PokemonListCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PokemonList extends _PokemonList {
-  const _$_PokemonList({required final List<Pokemon> data})
-      : _data = data,
+  const _$_PokemonList({required final List<Pokemon> results})
+      : _results = results,
         super._();
 
   factory _$_PokemonList.fromJson(Map<String, dynamic> json) =>
       _$$_PokemonListFromJson(json);
 
-  final List<Pokemon> _data;
+  final List<Pokemon> _results;
   @override
-  List<Pokemon> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
+  List<Pokemon> get results {
+    if (_results is EqualUnmodifiableListView) return _results;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(_results);
   }
 
   @override
   String toString() {
-    return 'PokemonList(data: $data)';
+    return 'PokemonList(results: $results)';
   }
 
   @override
@@ -122,13 +122,13 @@ class _$_PokemonList extends _PokemonList {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PokemonList &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
   @override
@@ -145,7 +145,7 @@ class _$_PokemonList extends _PokemonList {
 }
 
 abstract class _PokemonList extends PokemonList {
-  const factory _PokemonList({required final List<Pokemon> data}) =
+  const factory _PokemonList({required final List<Pokemon> results}) =
       _$_PokemonList;
   const _PokemonList._() : super._();
 
@@ -153,7 +153,7 @@ abstract class _PokemonList extends PokemonList {
       _$_PokemonList.fromJson;
 
   @override
-  List<Pokemon> get data;
+  List<Pokemon> get results;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonListCopyWith<_$_PokemonList> get copyWith =>

@@ -20,8 +20,9 @@ Pokemon _$PokemonFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Pokemon {
-  String get pokemonName => throw _privateConstructorUsedError;
-  String get pokemonImageUrl => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'url')
+  String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +34,7 @@ abstract class $PokemonCopyWith<$Res> {
   factory $PokemonCopyWith(Pokemon value, $Res Function(Pokemon) then) =
       _$PokemonCopyWithImpl<$Res, Pokemon>;
   @useResult
-  $Res call({String pokemonName, String pokemonImageUrl});
+  $Res call({String name, @JsonKey(name: 'url') String imageUrl});
 }
 
 /// @nodoc
@@ -49,17 +50,17 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pokemonName = null,
-    Object? pokemonImageUrl = null,
+    Object? name = null,
+    Object? imageUrl = null,
   }) {
     return _then(_value.copyWith(
-      pokemonName: null == pokemonName
-          ? _value.pokemonName
-          : pokemonName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      pokemonImageUrl: null == pokemonImageUrl
-          ? _value.pokemonImageUrl
-          : pokemonImageUrl // ignore: cast_nullable_to_non_nullable
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -72,7 +73,7 @@ abstract class _$$_PokemonCopyWith<$Res> implements $PokemonCopyWith<$Res> {
       __$$_PokemonCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String pokemonName, String pokemonImageUrl});
+  $Res call({String name, @JsonKey(name: 'url') String imageUrl});
 }
 
 /// @nodoc
@@ -85,17 +86,17 @@ class __$$_PokemonCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pokemonName = null,
-    Object? pokemonImageUrl = null,
+    Object? name = null,
+    Object? imageUrl = null,
   }) {
     return _then(_$_Pokemon(
-      pokemonName: null == pokemonName
-          ? _value.pokemonName
-          : pokemonName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      pokemonImageUrl: null == pokemonImageUrl
-          ? _value.pokemonImageUrl
-          : pokemonImageUrl // ignore: cast_nullable_to_non_nullable
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -104,20 +105,22 @@ class __$$_PokemonCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Pokemon extends _Pokemon {
-  const _$_Pokemon({required this.pokemonName, required this.pokemonImageUrl})
+  const _$_Pokemon(
+      {required this.name, @JsonKey(name: 'url') required this.imageUrl})
       : super._();
 
   factory _$_Pokemon.fromJson(Map<String, dynamic> json) =>
       _$$_PokemonFromJson(json);
 
   @override
-  final String pokemonName;
+  final String name;
   @override
-  final String pokemonImageUrl;
+  @JsonKey(name: 'url')
+  final String imageUrl;
 
   @override
   String toString() {
-    return 'Pokemon(pokemonName: $pokemonName, pokemonImageUrl: $pokemonImageUrl)';
+    return 'Pokemon(name: $name, imageUrl: $imageUrl)';
   }
 
   @override
@@ -125,15 +128,14 @@ class _$_Pokemon extends _Pokemon {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Pokemon &&
-            (identical(other.pokemonName, pokemonName) ||
-                other.pokemonName == pokemonName) &&
-            (identical(other.pokemonImageUrl, pokemonImageUrl) ||
-                other.pokemonImageUrl == pokemonImageUrl));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, pokemonName, pokemonImageUrl);
+  int get hashCode => Object.hash(runtimeType, name, imageUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -151,16 +153,17 @@ class _$_Pokemon extends _Pokemon {
 
 abstract class _Pokemon extends Pokemon {
   const factory _Pokemon(
-      {required final String pokemonName,
-      required final String pokemonImageUrl}) = _$_Pokemon;
+      {required final String name,
+      @JsonKey(name: 'url') required final String imageUrl}) = _$_Pokemon;
   const _Pokemon._() : super._();
 
   factory _Pokemon.fromJson(Map<String, dynamic> json) = _$_Pokemon.fromJson;
 
   @override
-  String get pokemonName;
+  String get name;
   @override
-  String get pokemonImageUrl;
+  @JsonKey(name: 'url')
+  String get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonCopyWith<_$_Pokemon> get copyWith =>

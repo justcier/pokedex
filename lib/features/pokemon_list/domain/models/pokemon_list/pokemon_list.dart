@@ -9,7 +9,7 @@ class PokemonList with _$PokemonList {
   const PokemonList._();
 
   const factory PokemonList({
-    required List<Pokemon> data,
+    required List<Pokemon> results,
   }) = _PokemonList;
 
   factory PokemonList.fromJson(Map<String, dynamic> json) =>
