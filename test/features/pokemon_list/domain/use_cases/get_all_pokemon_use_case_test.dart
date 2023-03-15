@@ -15,8 +15,9 @@ void main() {
         'should correctly propagate the call to repository and return all pokemon on a successful call',
         () async {
       // Arrange
-      when(pokemonRepository.getAllPokemon)
-          .thenAnswer((_) async => tPokemonList);
+      when(pokemonRepository.getAllPokemon).thenAnswer(
+        (_) async => tPokemonList,
+      );
 
       // Act
       final result = await useCase.call();
