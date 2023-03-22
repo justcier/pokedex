@@ -34,7 +34,7 @@ Used architecture is based on clean architecture from: https://resocoder.com/201
     - widgets - feature widgets
 - services - folder containing injection and navigation services
 - style - folder containing style tokens used in the app
-- test - folder for unit/cubit
+- test - folder for unit/cubit tests
 
 ## How to run the project and tests
 

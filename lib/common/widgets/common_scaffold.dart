@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
 
-
 class CommonScaffold extends StatelessWidget {
   final Widget body;
   final String title;
+
   const CommonScaffold({
     required this.body,
     required this.title,

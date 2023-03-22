@@ -14,11 +14,10 @@ class PokemonListWidget extends StatelessWidget {
     return ListView.builder(
         shrinkWrap: true,
         itemCount: results.length,
-        itemBuilder: (context, index) {
+        itemBuilder: (_, index) {
           final Pokemon pokemon = results[index];
-          return ListTile(
-            title: Text(pokemon.name),
-          );
+
+          return ListTile(title: Text(pokemon.name));
         });
   }
 }

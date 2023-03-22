@@ -17,10 +17,8 @@ class PokemonListRemoteDataSourceImpl implements PokemonListRemoteDataSource {
   Future<PokemonList> getAllPokemon() async {
     try {
       final response = await networkService.get(Endpoints.pokemonList);
-      print(response.body);
       return PokemonList.fromJson(json.decode(response.body));
     } catch (error) {
-      print(error);
       throw ServerException();
     }
   }

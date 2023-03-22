@@ -14,8 +14,10 @@ class TextStyleTokens {
     fontSize: Dimensions.sizeXXL,
     fontWeight: FontWeight.bold,
   );
+
   static TextStyle mainTitle =
-  _main.copyWith(color: ColorTokens.secondaryColor);
+      _main.copyWith(color: ColorTokens.secondaryColor);
+
   static TextStyle mainTitleWhite =
-  _main.copyWith(color: ColorTokens.mainFontColor);
+      _main.copyWith(color: ColorTokens.mainFontColor);
 }
