@@ -60,5 +60,47 @@ void main() {
         },
       );
     });
+
+    group('getPokemonDetails', () {
+      test(
+        'should return pokemon details',
+        () async {
+          // Arrange
+          when(() => networkService.get(captureAny())).thenAnswer(
+            (_) async => http.Response(
+              fixture(Fixtures.pokemonDetails),
+              successStatusCode,
+            ),
+          );
+
+          // Act
+          final result =
+              await pokemonListRemoteDataSourceImpl.getPokemonDetails('1');
+
+          // Assert
+          expect(result, tPokemonDetails);
+        },
+      );
+
+      test(
+        'should throw ServerException',
+        () async {
+          // Arrange
+
+          when(() => networkService.get(captureAny())).thenAnswer(
+            (_) async => http.Response(
+              'Something went wrong',
+              errorStatusCode,
+            ),
+          );
+
+          // Act
+          final call = pokemonListRemoteDataSourceImpl.getPokemonDetails('1');
+
+          // Assert
+          expect(call, throwsA(isA<ServerException>()));
+        },
+      );
+    });
   });
 }
