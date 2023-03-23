@@ -31,4 +31,23 @@ void main() {
       },
     );
   });
+
+  group('getPokemonDetails', () {
+    test(
+      'should correctly propagate the call to remote data source and return pokemon details on a successful call',
+      () async {
+        // Arrange
+        when(() => pokemonListRemoteDataSource.getPokemonDetails('1'))
+            .thenAnswer((_) async => tPokemonDetails);
+
+        // Act
+        final result = await pokemonListRepositoryImpl.getPokemonDetails('1');
+
+        // Assert
+        verify(() => pokemonListRemoteDataSource.getPokemonDetails('1'))
+            .called(1);
+        expect(result, tPokemonDetails);
+      },
+    );
+  });
 }
