@@ -21,8 +21,7 @@ Pokemon _$PokemonFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Pokemon {
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'url')
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +33,7 @@ abstract class $PokemonCopyWith<$Res> {
   factory $PokemonCopyWith(Pokemon value, $Res Function(Pokemon) then) =
       _$PokemonCopyWithImpl<$Res, Pokemon>;
   @useResult
-  $Res call({String name, @JsonKey(name: 'url') String imageUrl});
+  $Res call({String name, String url});
 }
 
 /// @nodoc
@@ -51,16 +50,16 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
   @override
   $Res call({
     Object? name = null,
-    Object? imageUrl = null,
+    Object? url = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -73,7 +72,7 @@ abstract class _$$_PokemonCopyWith<$Res> implements $PokemonCopyWith<$Res> {
       __$$_PokemonCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, @JsonKey(name: 'url') String imageUrl});
+  $Res call({String name, String url});
 }
 
 /// @nodoc
@@ -87,16 +86,16 @@ class __$$_PokemonCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? imageUrl = null,
+    Object? url = null,
   }) {
     return _then(_$_Pokemon(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -105,9 +104,7 @@ class __$$_PokemonCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Pokemon extends _Pokemon {
-  const _$_Pokemon(
-      {required this.name, @JsonKey(name: 'url') required this.imageUrl})
-      : super._();
+  const _$_Pokemon({required this.name, required this.url}) : super._();
 
   factory _$_Pokemon.fromJson(Map<String, dynamic> json) =>
       _$$_PokemonFromJson(json);
@@ -115,12 +112,11 @@ class _$_Pokemon extends _Pokemon {
   @override
   final String name;
   @override
-  @JsonKey(name: 'url')
-  final String imageUrl;
+  final String url;
 
   @override
   String toString() {
-    return 'Pokemon(name: $name, imageUrl: $imageUrl)';
+    return 'Pokemon(name: $name, url: $url)';
   }
 
   @override
@@ -129,13 +125,12 @@ class _$_Pokemon extends _Pokemon {
         (other.runtimeType == runtimeType &&
             other is _$_Pokemon &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, imageUrl);
+  int get hashCode => Object.hash(runtimeType, name, url);
 
   @JsonKey(ignore: true)
   @override
@@ -153,8 +148,7 @@ class _$_Pokemon extends _Pokemon {
 
 abstract class _Pokemon extends Pokemon {
   const factory _Pokemon(
-      {required final String name,
-      @JsonKey(name: 'url') required final String imageUrl}) = _$_Pokemon;
+      {required final String name, required final String url}) = _$_Pokemon;
   const _Pokemon._() : super._();
 
   factory _Pokemon.fromJson(Map<String, dynamic> json) = _$_Pokemon.fromJson;
@@ -162,8 +156,7 @@ abstract class _Pokemon extends Pokemon {
   @override
   String get name;
   @override
-  @JsonKey(name: 'url')
-  String get imageUrl;
+  String get url;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonCopyWith<_$_Pokemon> get copyWith =>

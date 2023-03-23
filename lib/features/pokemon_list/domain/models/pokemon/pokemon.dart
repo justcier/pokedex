@@ -9,7 +9,7 @@ class Pokemon with _$Pokemon {
 
   const factory Pokemon({
     required String name,
-    @JsonKey(name: 'url') required String imageUrl,
+    required String url,
   }) = _Pokemon;
 
   factory Pokemon.fromJson(Map<String, dynamic> json) =>
