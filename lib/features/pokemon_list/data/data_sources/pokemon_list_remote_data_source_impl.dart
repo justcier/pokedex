@@ -30,6 +30,7 @@ class PokemonListRemoteDataSourceImpl implements PokemonListRemoteDataSource {
       final response = await networkService.get(Endpoints.pokemonDetails(id));
       return PokemonDetails.fromJson(json.decode(response.body));
     } catch (error) {
+      print(error);
       throw ServerException();
     }
   }
