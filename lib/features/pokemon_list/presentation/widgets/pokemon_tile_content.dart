@@ -37,8 +37,6 @@ class PokemonTileContent extends StatelessWidget {
           ),
         ],
       ),
-      // title: Text(pokemonDetails.name),
-      // subtitle: Text("${pokemonDetails.id}"),
     );
   }
 }

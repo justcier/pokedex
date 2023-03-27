@@ -6,15 +6,18 @@ import 'package:pokedex_rest/style/dimensions.dart';
 class PokemonListWidget extends StatelessWidget {
   final List<PokemonDetails> pokemonDetailsList;
   final ScrollController gridViewScrollController;
+  final bool isLoading;
 
   const PokemonListWidget({
     required this.pokemonDetailsList,
     required this.gridViewScrollController,
+    required this.isLoading,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final itemCount = pokemonDetailsList.length;
     return GridView.builder(
         controller: gridViewScrollController,
         padding: const EdgeInsets.all(Dimensions.sizeXL),
@@ -23,8 +26,11 @@ class PokemonListWidget extends StatelessWidget {
           mainAxisSpacing: Dimensions.sizeXL,
           crossAxisSpacing: Dimensions.sizeXL,
         ),
-        itemCount: pokemonDetailsList.length,
+        itemCount: isLoading ? itemCount + 1 : itemCount,
         itemBuilder: (_, index) {
+          if (index == itemCount && isLoading) {
+            return const CircularProgressIndicator();
+          }
           return PokemonTileContent(pokemonDetails: pokemonDetailsList[index]);
         });
   }

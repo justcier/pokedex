@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
             return PokemonListWidget(
               pokemonDetailsList: pokemonDetailsList,
               gridViewScrollController: _scrollController,
+              isLoading: state.isLoading,
             );
           },
         ),
