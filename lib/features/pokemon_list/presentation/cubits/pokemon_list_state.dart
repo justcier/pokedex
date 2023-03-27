@@ -19,6 +19,7 @@ class PokemonListState with _$PokemonListState {
     required PokemonListStateStatus status,
     PokemonList? pokemonList,
     List<PokemonDetails>? pokemonDetailsList,
+    int? currentPage,
   }) = _PokemonListState;
 
   factory PokemonListState.initial() =>

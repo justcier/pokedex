@@ -16,18 +16,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final PokemonListCubit cubit = getIt<PokemonListCubit>();
+  final PokemonListCubit _cubit = getIt<PokemonListCubit>();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    cubit.getAllPokemon();
-    cubit.getPokemonDetailsList();
+    _cubit.getAllPokemon();
+    _cubit.getPokemonDetailsList();
+
+    _scrollController.addListener(_fetchMoreDataListener);
   }
 
   @override
   void dispose() {
-    cubit.close();
+    _cubit.close();
+    _scrollController.removeListener(_fetchMoreDataListener);
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -36,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     return CommonScaffold(
       body: Center(
         child: BlocBuilder<PokemonListCubit, PokemonListState>(
-          bloc: cubit,
+          bloc: _cubit,
           builder: (_, PokemonListState state) {
             final List<PokemonDetails>? pokemonDetailsList =
                 state.pokemonDetailsList;
@@ -47,11 +52,18 @@ class _HomePageState extends State<HomePage> {
 
             return PokemonListWidget(
               pokemonDetailsList: pokemonDetailsList,
+              gridViewScrollController: _scrollController,
             );
           },
         ),
       ),
       title: Strings.appBarHomePageTitle,
     );
+  }
+
+  void _fetchMoreDataListener() {
+    if (_scrollController.position.extentAfter == 0) {
+      _cubit.fetchNextPage();
+    }
   }
 }
