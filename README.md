@@ -4,6 +4,13 @@ Project created and developed in purpose of learning Flutter. It's a mobile
 application which allows users to search for pokemon.
 
 ## Project presentation
+### App screens
+| Home page  |
+| ------------- |
+|<img width="237" alt="image" src="https://user-images.githubusercontent.com/71925819/228244394-0fb637bd-8522-4c32-8673-cede325e12e8.png">
+
+### App showcase
+https://user-images.githubusercontent.com/71925819/228243954-75b62302-91f5-4841-9f15-efbf37a317b2.mov
 
 ## Technology stack and main dependencies
 | Flutter  | v3.3.3  |
