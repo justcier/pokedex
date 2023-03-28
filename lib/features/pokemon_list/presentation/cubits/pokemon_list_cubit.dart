@@ -1,8 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
-import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_list/pokemon_list.dart';
-import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_all_pokemon_use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
@@ -11,17 +9,6 @@ import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 class PokemonListCubit extends Cubit<PokemonListState> {
   PokemonListCubit() : super(PokemonListState.initial());
   static const _defaultPageSize = 20;
-
-  Future<void> getAllPokemon() async {
-    emit(state.copyWith(status: PokemonListStateStatus.loading));
-
-    final PokemonList pokemonList = await getIt<GetAllPokemonUseCase>().call();
-
-    emit(state.copyWith(
-      status: PokemonListStateStatus.loaded,
-      pokemonList: pokemonList,
-    ));
-  }
 
   Future<void> getPokemonDetailsList({int page = 1}) async {
     emit(state.copyWith(status: PokemonListStateStatus.loading));
@@ -53,7 +40,7 @@ class PokemonListCubit extends Cubit<PokemonListState> {
     final currentPage = state.currentPage;
 
     if (!state.isLoading && currentPage != null) {
-      getPokemonDetailsList(page: currentPage + 1);
+      await getPokemonDetailsList(page: currentPage + 1);
     }
   }
 }

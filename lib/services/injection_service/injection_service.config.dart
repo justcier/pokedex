@@ -16,14 +16,12 @@ import 'package:pokedex_rest/features/pokemon_list/data/repositories/pokemon_lis
     as _i10;
 import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_list_repository.dart'
     as _i9;
-import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_all_pokemon_use_case.dart'
-    as _i11;
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart'
-    as _i12;
+    as _i11;
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart'
     as _i6;
 import 'package:pokedex_rest/services/injection_service/injection_registration_service.dart'
-    as _i13;
+    as _i12;
 import 'package:pokedex_rest/services/network_service/network_service.dart'
     as _i4;
 import 'package:pokedex_rest/services/network_service/network_service_impl.dart'
@@ -51,12 +49,10 @@ _i1.GetIt $initGetIt(
           networkService: get<_i4.NetworkService>()));
   gh.factory<_i9.PokemonListRepository>(() => _i10.PokemonListRepositoryImpl(
       pokemonListRemoteDataSource: get<_i7.PokemonListRemoteDataSource>()));
-  gh.factory<_i11.GetAllPokemonUseCase>(
-      () => _i11.GetAllPokemonUseCase(get<_i9.PokemonListRepository>()));
-  gh.factory<_i12.GetPokemonDetailsUseCase>(
-      () => _i12.GetPokemonDetailsUseCase(get<_i9.PokemonListRepository>()));
+  gh.factory<_i11.GetPokemonDetailsUseCase>(
+      () => _i11.GetPokemonDetailsUseCase(get<_i9.PokemonListRepository>()));
   return get;
 }
 
 class _$InjectionRegistrationService
-    extends _i13.InjectionRegistrationService {}
+    extends _i12.InjectionRegistrationService {}

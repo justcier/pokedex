@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
-import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_list/pokemon_list.dart';
 
 part 'pokemon_list_state.freezed.dart';
 
@@ -17,7 +16,6 @@ class PokemonListState with _$PokemonListState {
 
   const factory PokemonListState({
     required PokemonListStateStatus status,
-    PokemonList? pokemonList,
     List<PokemonDetails>? pokemonDetailsList,
     int? currentPage,
   }) = _PokemonListState;

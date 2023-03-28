@@ -14,24 +14,6 @@ void main() {
       PokemonListRepositoryImpl(
           pokemonListRemoteDataSource: pokemonListRemoteDataSource);
 
-  group('getAllPokemon', () {
-    test(
-      'should correctly propagate the call to remote data source and return all pokemon on a successful call',
-      () async {
-        // Arrange
-        when(pokemonListRemoteDataSource.getAllPokemon)
-            .thenAnswer((_) async => tPokemonList);
-
-        // Act
-        final result = await pokemonListRepositoryImpl.getAllPokemon();
-
-        // Assert
-        verify(pokemonListRemoteDataSource.getAllPokemon).called(1);
-        expect(result, tPokemonList);
-      },
-    );
-  });
-
   group('getPokemonDetails', () {
     test(
       'should correctly propagate the call to remote data source and return pokemon details on a successful call',

@@ -22,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _cubit.getAllPokemon();
     _cubit.getPokemonDetailsList();
 
     _scrollController.addListener(_fetchMoreDataListener);
