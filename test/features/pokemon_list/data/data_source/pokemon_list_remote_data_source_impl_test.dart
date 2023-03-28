@@ -19,24 +19,24 @@ void main() {
   const errorStatusCode = 404;
 
   group('PokemonListRemoteDataSourceImpl', () {
-    group('getAllPokemon', () {
+    group('getPokemonDetails', () {
       test(
-        'should return all pokemon',
+        'should return pokemon details',
         () async {
           // Arrange
-
           when(() => networkService.get(captureAny())).thenAnswer(
             (_) async => http.Response(
-              fixture(Fixtures.pokemonList),
+              fixture(Fixtures.pokemonDetails),
               successStatusCode,
             ),
           );
 
           // Act
-          final results = await pokemonListRemoteDataSourceImpl.getAllPokemon();
+          final result =
+              await pokemonListRemoteDataSourceImpl.getPokemonDetails('1');
 
           // Assert
-          expect(results, tPokemonList);
+          expect(result, tPokemonDetails);
         },
       );
 
@@ -53,7 +53,7 @@ void main() {
           );
 
           // Act
-          final call = pokemonListRemoteDataSourceImpl.getAllPokemon();
+          final call = pokemonListRemoteDataSourceImpl.getPokemonDetails('1');
 
           // Assert
           expect(call, throwsA(isA<ServerException>()));

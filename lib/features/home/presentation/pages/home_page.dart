@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
-import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon/pokemon.dart';
+import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
@@ -16,17 +16,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final PokemonListCubit cubit = getIt<PokemonListCubit>();
+  final PokemonListCubit _cubit = getIt<PokemonListCubit>();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    cubit.getAllPokemon();
+    _cubit.getPokemonDetailsList();
+
+    _scrollController.addListener(_fetchMoreDataListener);
   }
 
   @override
   void dispose() {
-    cubit.close();
+    _cubit.close();
+    _scrollController.removeListener(_fetchMoreDataListener);
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -35,19 +40,30 @@ class _HomePageState extends State<HomePage> {
     return CommonScaffold(
       body: Center(
         child: BlocBuilder<PokemonListCubit, PokemonListState>(
-          bloc: cubit,
+          bloc: _cubit,
           builder: (_, PokemonListState state) {
-            final List<Pokemon>? results = state.pokemonList?.results;
+            final List<PokemonDetails>? pokemonDetailsList =
+                state.pokemonDetailsList;
 
-            if (results == null) {
+            if (pokemonDetailsList == null) {
               return const CircularProgressIndicator();
             }
 
-            return PokemonListWidget(results: results);
+            return PokemonListWidget(
+              pokemonDetailsList: pokemonDetailsList,
+              gridViewScrollController: _scrollController,
+              isLoading: state.isLoading,
+            );
           },
         ),
       ),
       title: Strings.appBarHomePageTitle,
     );
+  }
+
+  void _fetchMoreDataListener() {
+    if (_scrollController.position.extentAfter == 0) {
+      _cubit.fetchNextPage();
+    }
   }
 }

@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PokemonListState {
   PokemonListStateStatus get status => throw _privateConstructorUsedError;
-  PokemonList? get pokemonList => throw _privateConstructorUsedError;
+  List<PokemonDetails>? get pokemonDetailsList =>
+      throw _privateConstructorUsedError;
+  int? get currentPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PokemonListStateCopyWith<PokemonListState> get copyWith =>
@@ -30,9 +32,10 @@ abstract class $PokemonListStateCopyWith<$Res> {
           PokemonListState value, $Res Function(PokemonListState) then) =
       _$PokemonListStateCopyWithImpl<$Res, PokemonListState>;
   @useResult
-  $Res call({PokemonListStateStatus status, PokemonList? pokemonList});
-
-  $PokemonListCopyWith<$Res>? get pokemonList;
+  $Res call(
+      {PokemonListStateStatus status,
+      List<PokemonDetails>? pokemonDetailsList,
+      int? currentPage});
 }
 
 /// @nodoc
@@ -49,30 +52,23 @@ class _$PokemonListStateCopyWithImpl<$Res, $Val extends PokemonListState>
   @override
   $Res call({
     Object? status = null,
-    Object? pokemonList = freezed,
+    Object? pokemonDetailsList = freezed,
+    Object? currentPage = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as PokemonListStateStatus,
-      pokemonList: freezed == pokemonList
-          ? _value.pokemonList
-          : pokemonList // ignore: cast_nullable_to_non_nullable
-              as PokemonList?,
+      pokemonDetailsList: freezed == pokemonDetailsList
+          ? _value.pokemonDetailsList
+          : pokemonDetailsList // ignore: cast_nullable_to_non_nullable
+              as List<PokemonDetails>?,
+      currentPage: freezed == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PokemonListCopyWith<$Res>? get pokemonList {
-    if (_value.pokemonList == null) {
-      return null;
-    }
-
-    return $PokemonListCopyWith<$Res>(_value.pokemonList!, (value) {
-      return _then(_value.copyWith(pokemonList: value) as $Val);
-    });
   }
 }
 
@@ -84,10 +80,10 @@ abstract class _$$_PokemonListStateCopyWith<$Res>
       __$$_PokemonListStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PokemonListStateStatus status, PokemonList? pokemonList});
-
-  @override
-  $PokemonListCopyWith<$Res>? get pokemonList;
+  $Res call(
+      {PokemonListStateStatus status,
+      List<PokemonDetails>? pokemonDetailsList,
+      int? currentPage});
 }
 
 /// @nodoc
@@ -102,17 +98,22 @@ class __$$_PokemonListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? pokemonList = freezed,
+    Object? pokemonDetailsList = freezed,
+    Object? currentPage = freezed,
   }) {
     return _then(_$_PokemonListState(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as PokemonListStateStatus,
-      pokemonList: freezed == pokemonList
-          ? _value.pokemonList
-          : pokemonList // ignore: cast_nullable_to_non_nullable
-              as PokemonList?,
+      pokemonDetailsList: freezed == pokemonDetailsList
+          ? _value._pokemonDetailsList
+          : pokemonDetailsList // ignore: cast_nullable_to_non_nullable
+              as List<PokemonDetails>?,
+      currentPage: freezed == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -120,17 +121,32 @@ class __$$_PokemonListStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PokemonListState extends _PokemonListState {
-  const _$_PokemonListState({required this.status, this.pokemonList})
-      : super._();
+  const _$_PokemonListState(
+      {required this.status,
+      final List<PokemonDetails>? pokemonDetailsList,
+      this.currentPage})
+      : _pokemonDetailsList = pokemonDetailsList,
+        super._();
 
   @override
   final PokemonListStateStatus status;
+  final List<PokemonDetails>? _pokemonDetailsList;
   @override
-  final PokemonList? pokemonList;
+  List<PokemonDetails>? get pokemonDetailsList {
+    final value = _pokemonDetailsList;
+    if (value == null) return null;
+    if (_pokemonDetailsList is EqualUnmodifiableListView)
+      return _pokemonDetailsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final int? currentPage;
 
   @override
   String toString() {
-    return 'PokemonListState(status: $status, pokemonList: $pokemonList)';
+    return 'PokemonListState(status: $status, pokemonDetailsList: $pokemonDetailsList, currentPage: $currentPage)';
   }
 
   @override
@@ -139,12 +155,15 @@ class _$_PokemonListState extends _PokemonListState {
         (other.runtimeType == runtimeType &&
             other is _$_PokemonListState &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.pokemonList, pokemonList) ||
-                other.pokemonList == pokemonList));
+            const DeepCollectionEquality()
+                .equals(other._pokemonDetailsList, _pokemonDetailsList) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, pokemonList);
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(_pokemonDetailsList), currentPage);
 
   @JsonKey(ignore: true)
   @override
@@ -156,13 +175,16 @@ class _$_PokemonListState extends _PokemonListState {
 abstract class _PokemonListState extends PokemonListState {
   const factory _PokemonListState(
       {required final PokemonListStateStatus status,
-      final PokemonList? pokemonList}) = _$_PokemonListState;
+      final List<PokemonDetails>? pokemonDetailsList,
+      final int? currentPage}) = _$_PokemonListState;
   const _PokemonListState._() : super._();
 
   @override
   PokemonListStateStatus get status;
   @override
-  PokemonList? get pokemonList;
+  List<PokemonDetails>? get pokemonDetailsList;
+  @override
+  int? get currentPage;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonListStateCopyWith<_$_PokemonListState> get copyWith =>

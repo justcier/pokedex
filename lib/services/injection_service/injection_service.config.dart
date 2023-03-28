@@ -16,7 +16,7 @@ import 'package:pokedex_rest/features/pokemon_list/data/repositories/pokemon_lis
     as _i10;
 import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_list_repository.dart'
     as _i9;
-import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_all_pokemon_use_case.dart'
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart'
     as _i11;
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart'
     as _i6;
@@ -49,8 +49,8 @@ _i1.GetIt $initGetIt(
           networkService: get<_i4.NetworkService>()));
   gh.factory<_i9.PokemonListRepository>(() => _i10.PokemonListRepositoryImpl(
       pokemonListRemoteDataSource: get<_i7.PokemonListRemoteDataSource>()));
-  gh.factory<_i11.GetAllPokemonUseCase>(
-      () => _i11.GetAllPokemonUseCase(get<_i9.PokemonListRepository>()));
+  gh.factory<_i11.GetPokemonDetailsUseCase>(
+      () => _i11.GetPokemonDetailsUseCase(get<_i9.PokemonListRepository>()));
   return get;
 }
 

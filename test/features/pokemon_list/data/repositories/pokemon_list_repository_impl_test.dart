@@ -14,20 +14,21 @@ void main() {
       PokemonListRepositoryImpl(
           pokemonListRemoteDataSource: pokemonListRemoteDataSource);
 
-  group('getAllPokemon', () {
+  group('getPokemonDetails', () {
     test(
-      'should correctly propagate the call to remote data source and return all pokemon on a successful call',
+      'should correctly propagate the call to remote data source and return pokemon details on a successful call',
       () async {
         // Arrange
-        when(pokemonListRemoteDataSource.getAllPokemon)
-            .thenAnswer((_) async => tPokemonList);
+        when(() => pokemonListRemoteDataSource.getPokemonDetails('1'))
+            .thenAnswer((_) async => tPokemonDetails);
 
         // Act
-        final result = await pokemonListRepositoryImpl.getAllPokemon();
+        final result = await pokemonListRepositoryImpl.getPokemonDetails('1');
 
         // Assert
-        verify(pokemonListRemoteDataSource.getAllPokemon).called(1);
-        expect(result, tPokemonList);
+        verify(() => pokemonListRemoteDataSource.getPokemonDetails('1'))
+            .called(1);
+        expect(result, tPokemonDetails);
       },
     );
   });
