@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
@@ -8,6 +9,7 @@ import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_l
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 
+@RoutePage()
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -45,8 +47,10 @@ class _HomePageState extends State<HomePage> {
             final List<PokemonDetails>? pokemonDetailsList =
                 state.pokemonDetailsList;
 
-            if (pokemonDetailsList == null) {
+            if (state.isLoading) {
               return const CircularProgressIndicator();
+            } else if (pokemonDetailsList == null) {
+              return const SizedBox.shrink();
             }
 
             return PokemonListWidget(

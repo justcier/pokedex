@@ -33,7 +33,7 @@ void main() {
 
           // Act
           final result =
-              await pokemonListRemoteDataSourceImpl.getPokemonDetails('1');
+              await pokemonListRemoteDataSourceImpl.getPokemonDetails(tId);
 
           // Assert
           expect(result, tPokemonDetails);
@@ -53,7 +53,7 @@ void main() {
           );
 
           // Act
-          final call = pokemonListRemoteDataSourceImpl.getPokemonDetails('1');
+          final call = pokemonListRemoteDataSourceImpl.getPokemonDetails(tId);
 
           // Assert
           expect(call, throwsA(isA<ServerException>()));
