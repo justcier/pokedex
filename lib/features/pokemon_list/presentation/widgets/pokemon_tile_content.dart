@@ -26,9 +26,12 @@ class PokemonTileContent extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: Image.network(
-              pokemonDetails.sprites.frontDefault,
-              fit: BoxFit.cover,
+            child: Hero(
+              tag: pokemonDetails.id,
+              child: Image.network(
+                pokemonDetails.sprites.frontDefault,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Text(
