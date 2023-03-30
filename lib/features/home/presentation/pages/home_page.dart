@@ -8,6 +8,7 @@ import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_l
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
+import 'package:pokedex_rest/style/color_tokens.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -40,6 +41,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
+      appBar: AppBar(
+        title: const Text(Strings.appBarHomePageTitle),
+        backgroundColor: ColorTokens.secondaryColor,
+      ),
       body: Center(
         child: BlocBuilder<PokemonListCubit, PokemonListState>(
           bloc: _cubit,
@@ -47,7 +52,7 @@ class _HomePageState extends State<HomePage> {
             final List<PokemonDetails>? pokemonDetailsList =
                 state.pokemonDetailsList;
 
-            if (state.isLoading) {
+            if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
               return const CircularProgressIndicator();
             } else if (pokemonDetailsList == null) {
               return const SizedBox.shrink();
@@ -61,7 +66,6 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
-      title: Strings.appBarHomePageTitle,
     );
   }
 

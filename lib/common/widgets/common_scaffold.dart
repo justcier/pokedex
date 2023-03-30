@@ -3,21 +3,18 @@ import 'package:pokedex_rest/style/color_tokens.dart';
 
 class CommonScaffold extends StatelessWidget {
   final Widget body;
-  final String title;
+  final PreferredSizeWidget appBar;
 
   const CommonScaffold({
     required this.body,
-    required this.title,
+    required this.appBar,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        backgroundColor: ColorTokens.secondaryColor,
-      ),
+      appBar: appBar,
       body: body,
       backgroundColor: ColorTokens.backgroundColor,
     );

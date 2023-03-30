@@ -36,7 +36,9 @@ class PokemonListWidget extends StatelessWidget {
         }
 
         return GestureDetector(
-          onTap: () => context.router.push(const PokemonDetailsRoute()),
+          onTap: () => context.router.push(
+            PokemonDetailsRoute(pokemonDetails: pokemonDetailsList[index]),
+          ),
           child: PokemonTileContent(pokemonDetails: pokemonDetailsList[index]),
         );
       },

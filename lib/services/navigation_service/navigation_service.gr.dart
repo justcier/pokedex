@@ -21,9 +21,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     PokemonDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<PokemonDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const PokemonDetailsPage(),
+        child: PokemonDetailsPage(
+          pokemonDetails: args.pokemonDetails,
+          key: args.key,
+        ),
       );
     },
   };
@@ -45,14 +49,38 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [PokemonDetailsPage]
-class PokemonDetailsRoute extends PageRouteInfo<void> {
-  const PokemonDetailsRoute({List<PageRouteInfo>? children})
-      : super(
+class PokemonDetailsRoute extends PageRouteInfo<PokemonDetailsRouteArgs> {
+  PokemonDetailsRoute({
+    required PokemonDetails pokemonDetails,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           PokemonDetailsRoute.name,
+          args: PokemonDetailsRouteArgs(
+            pokemonDetails: pokemonDetails,
+            key: key,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'PokemonDetailsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<PokemonDetailsRouteArgs> page =
+      PageInfo<PokemonDetailsRouteArgs>(name);
+}
+
+class PokemonDetailsRouteArgs {
+  const PokemonDetailsRouteArgs({
+    required this.pokemonDetails,
+    this.key,
+  });
+
+  final PokemonDetails pokemonDetails;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PokemonDetailsRouteArgs{pokemonDetails: $pokemonDetails, key: $key}';
+  }
 }
