@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:pokedex_rest/common/widgets/pokeball_loader.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_tile_content.dart';
 import 'package:pokedex_rest/services/navigation_service/navigation_service.dart';
@@ -32,7 +33,7 @@ class PokemonListWidget extends StatelessWidget {
       itemCount: isLoading ? itemCount + 1 : itemCount,
       itemBuilder: (_, index) {
         if (index == itemCount && isLoading) {
-          return const CircularProgressIndicator();
+          return const PokeballLoader();
         }
 
         return GestureDetector(
