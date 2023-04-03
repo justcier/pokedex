@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_rest/common/widgets/pokemon_hero.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
 import 'package:pokedex_rest/style/dimensions.dart';
@@ -26,17 +27,15 @@ class PokemonTileContent extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: Hero(
-              tag: pokemonDetails.id,
-              child: Image.network(
-                pokemonDetails.sprites.frontDefault,
-                fit: BoxFit.cover,
-              ),
+            child: PokemonHero(
+              pokemonImageUrl: pokemonDetails.sprites.frontDefault,
+              pokemonId: pokemonDetails.id,
             ),
           ),
           Text(
             pokemonDetails.name,
             style: TextStyleTokens.mainTitle,
+            maxLines: 1,
           ),
         ],
       ),

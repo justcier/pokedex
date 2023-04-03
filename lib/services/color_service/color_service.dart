@@ -5,5 +5,7 @@ import 'package:palette_generator/palette_generator.dart';
 @injectable
 class ColorService {
   Future<Color> getColorFromImage(ImageProvider imageProvider) async =>
-      (await PaletteGenerator.fromImageProvider(imageProvider)).colors.first;
+      (await PaletteGenerator.fromImageProvider(imageProvider))
+          .dominantColor!
+          .color;
 }
