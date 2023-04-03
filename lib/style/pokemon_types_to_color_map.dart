@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Map<String, Color> pokemonColors = {
+Map<String, Color> pokemonTypeToColorMap = {
   'normal': const Color(0xFFA8A77A),
   'fighting': const Color(0xFFC22E28),
   'flying': const Color(0xFFA98FF3),

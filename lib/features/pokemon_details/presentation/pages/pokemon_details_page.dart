@@ -5,6 +5,8 @@ import 'package:pokedex_rest/core/extensions/build_context_extensions.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_app_bar.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/style/dimensions.dart';
+import 'package:pokedex_rest/style/pokemon_types_to_color_map.dart';
+import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 @RoutePage()
 class PokemonDetailsPage extends StatelessWidget {
@@ -19,24 +21,32 @@ class PokemonDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CommonScaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(context.screenHeight / 3),
-          child: PokemonDetailsAppBar(pokemonDetails: pokemonDetails)),
+        preferredSize: Size.fromHeight(context.screenHeight / 3),
+        child: PokemonDetailsAppBar(pokemonDetails: pokemonDetails),
+      ),
       body: Container(
         margin: const EdgeInsets.all(Dimensions.sizeL),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  color: Colors.grey,
-                  child: Text('Ziom1'),
-                ),
-                Container(
-                  color: Colors.amber,
-                  child: Text('Ziom2'),
-                ),
-              ],
+              children: pokemonDetails.types.map((typeObject) {
+                final String typeName = typeObject.type.name;
+
+                return Container(
+                  padding: const EdgeInsets.all(Dimensions.sizeM),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(Dimensions.sizeL),
+                    ),
+                    color: pokemonTypeToColorMap[typeName],
+                  ),
+                  child: Text(
+                    typeName,
+                    style: TextStyleTokens.mainTitleWhite,
+                  ),
+                );
+              }).toList(),
             ),
             Container(),
             Container(),
