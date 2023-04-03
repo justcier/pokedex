@@ -11,6 +11,9 @@ _$_PokemonDetails _$$_PokemonDetailsFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       id: json['id'] as int,
       sprites: Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
+      types: (json['types'] as List<dynamic>)
+          .map((e) => Type.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_PokemonDetailsToJson(_$_PokemonDetails instance) =>
@@ -18,4 +21,5 @@ Map<String, dynamic> _$$_PokemonDetailsToJson(_$_PokemonDetails instance) =>
       'name': instance.name,
       'id': instance.id,
       'sprites': instance.sprites,
+      'types': instance.types,
     };
