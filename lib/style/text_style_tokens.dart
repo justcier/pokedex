@@ -23,5 +23,13 @@ class TextStyleTokens {
 
   static TextStyle mainTitleWhite =
       _main.copyWith(color: ColorTokens.mainFontColor);
+
+  static TextStyle mainTitleBig = _main.copyWith(
+    fontSize: Dimensions.sizeXXL,
+    color: ColorTokens.secondaryColor,
+  );
+
+  static TextStyle mainDescription =
+      description.copyWith(color: ColorTokens.primaryColor);
 }
 // GoogleFonts.pressStart2PTextTheme

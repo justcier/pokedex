@@ -12,6 +12,8 @@ class PokemonDetails with _$PokemonDetails {
   const factory PokemonDetails({
     required String name,
     required int id,
+    required int weight,
+    required int height,
     required Sprites sprites,
     required List<Type> types,
   }) = _PokemonDetails;

@@ -22,6 +22,8 @@ PokemonDetails _$PokemonDetailsFromJson(Map<String, dynamic> json) {
 mixin _$PokemonDetails {
   String get name => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
+  int get weight => throw _privateConstructorUsedError;
+  int get height => throw _privateConstructorUsedError;
   Sprites get sprites => throw _privateConstructorUsedError;
   List<Type> get types => throw _privateConstructorUsedError;
 
@@ -37,7 +39,13 @@ abstract class $PokemonDetailsCopyWith<$Res> {
           PokemonDetails value, $Res Function(PokemonDetails) then) =
       _$PokemonDetailsCopyWithImpl<$Res, PokemonDetails>;
   @useResult
-  $Res call({String name, int id, Sprites sprites, List<Type> types});
+  $Res call(
+      {String name,
+      int id,
+      int weight,
+      int height,
+      Sprites sprites,
+      List<Type> types});
 
   $SpritesCopyWith<$Res> get sprites;
 }
@@ -57,6 +65,8 @@ class _$PokemonDetailsCopyWithImpl<$Res, $Val extends PokemonDetails>
   $Res call({
     Object? name = null,
     Object? id = null,
+    Object? weight = null,
+    Object? height = null,
     Object? sprites = null,
     Object? types = null,
   }) {
@@ -68,6 +78,14 @@ class _$PokemonDetailsCopyWithImpl<$Res, $Val extends PokemonDetails>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: null == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
               as int,
       sprites: null == sprites
           ? _value.sprites
@@ -97,7 +115,13 @@ abstract class _$$_PokemonDetailsCopyWith<$Res>
       __$$_PokemonDetailsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, int id, Sprites sprites, List<Type> types});
+  $Res call(
+      {String name,
+      int id,
+      int weight,
+      int height,
+      Sprites sprites,
+      List<Type> types});
 
   @override
   $SpritesCopyWith<$Res> get sprites;
@@ -116,6 +140,8 @@ class __$$_PokemonDetailsCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? id = null,
+    Object? weight = null,
+    Object? height = null,
     Object? sprites = null,
     Object? types = null,
   }) {
@@ -127,6 +153,14 @@ class __$$_PokemonDetailsCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      weight: null == weight
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as int,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
               as int,
       sprites: null == sprites
           ? _value.sprites
@@ -146,6 +180,8 @@ class _$_PokemonDetails extends _PokemonDetails {
   const _$_PokemonDetails(
       {required this.name,
       required this.id,
+      required this.weight,
+      required this.height,
       required this.sprites,
       required final List<Type> types})
       : _types = types,
@@ -159,6 +195,10 @@ class _$_PokemonDetails extends _PokemonDetails {
   @override
   final int id;
   @override
+  final int weight;
+  @override
+  final int height;
+  @override
   final Sprites sprites;
   final List<Type> _types;
   @override
@@ -170,7 +210,7 @@ class _$_PokemonDetails extends _PokemonDetails {
 
   @override
   String toString() {
-    return 'PokemonDetails(name: $name, id: $id, sprites: $sprites, types: $types)';
+    return 'PokemonDetails(name: $name, id: $id, weight: $weight, height: $height, sprites: $sprites, types: $types)';
   }
 
   @override
@@ -180,14 +220,16 @@ class _$_PokemonDetails extends _PokemonDetails {
             other is _$_PokemonDetails &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.height, height) || other.height == height) &&
             (identical(other.sprites, sprites) || other.sprites == sprites) &&
             const DeepCollectionEquality().equals(other._types, _types));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, id, sprites,
-      const DeepCollectionEquality().hash(_types));
+  int get hashCode => Object.hash(runtimeType, name, id, weight, height,
+      sprites, const DeepCollectionEquality().hash(_types));
 
   @JsonKey(ignore: true)
   @override
@@ -207,6 +249,8 @@ abstract class _PokemonDetails extends PokemonDetails {
   const factory _PokemonDetails(
       {required final String name,
       required final int id,
+      required final int weight,
+      required final int height,
       required final Sprites sprites,
       required final List<Type> types}) = _$_PokemonDetails;
   const _PokemonDetails._() : super._();
@@ -218,6 +262,10 @@ abstract class _PokemonDetails extends PokemonDetails {
   String get name;
   @override
   int get id;
+  @override
+  int get weight;
+  @override
+  int get height;
   @override
   Sprites get sprites;
   @override
