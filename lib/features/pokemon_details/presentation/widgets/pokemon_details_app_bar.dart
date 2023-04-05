@@ -44,8 +44,7 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(Strings.appBarHomePageTitle),
-          Text(widget.pokemonDetails.id.toString()),
-          // TODO add function to show proper view: #0001
+          Text(_showPokemonId(widget.pokemonDetails.id)),
         ],
       ),
       flexibleSpace: AnimatedContainer(
@@ -66,4 +65,8 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
 
   BorderRadius get _borderRadius =>
       const BorderRadius.vertical(bottom: Radius.circular(Dimensions.sizeXXXL));
+
+  String _showPokemonId(int pokemonId) {
+    return '#${'O' * (3 - pokemonId.toString().length)}$pokemonId';
+  }
 }
