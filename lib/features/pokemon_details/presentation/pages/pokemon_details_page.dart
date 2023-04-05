@@ -2,8 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
 import 'package:pokedex_rest/core/extensions/build_context_extensions.dart';
-import 'package:pokedex_rest/core/strings/strings.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_app_bar.dart';
+import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_body_attributes_row.dart';
+import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_stats_container.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_types_row.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/style/dimensions.dart';
@@ -39,38 +40,14 @@ class PokemonDetailsPage extends StatelessWidget {
             const SizedBox(
               height: Dimensions.sizeXXL,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      Strings.pokemonDetailWeightValue(pokemonDetails.weight),
-                      style: TextStyleTokens.mainTitle,
-                    ),
-                    const SizedBox(height: Dimensions.sizeM),
-                    Text(
-                      Strings.pokemonDetailWeightLabel,
-                      style: TextStyleTokens.mainDescription,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      Strings.pokemonDetailHeightValue(pokemonDetails.height),
-                      style: TextStyleTokens.mainTitle,
-                    ),
-                    const SizedBox(height: Dimensions.sizeM),
-                    Text(
-                      Strings.pokemonDetailHeightLabel,
-                      style: TextStyleTokens.mainDescription,
-                    ),
-                  ],
-                ),
-              ],
+            PokemonDetailsBodyAttributesRow(
+              weight: pokemonDetails.weight,
+              height: pokemonDetails.height,
             ),
-            Container(),
+            const SizedBox(
+              height: Dimensions.sizeXXL,
+            ),
+            const PokemonDetailsStatsContainer(),
           ],
         ),
       ),

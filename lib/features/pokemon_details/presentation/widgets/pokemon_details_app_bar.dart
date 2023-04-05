@@ -45,6 +45,7 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
         children: [
           const Text(Strings.appBarHomePageTitle),
           Text(widget.pokemonDetails.id.toString()),
+          // TODO add function to show proper view: #0001
         ],
       ),
       flexibleSpace: AnimatedContainer(
