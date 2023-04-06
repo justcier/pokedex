@@ -47,7 +47,10 @@ class PokemonDetailsPage extends StatelessWidget {
             const SizedBox(
               height: Dimensions.sizeXXL,
             ),
-            const PokemonDetailsStatsContainer(),
+            PokemonDetailsStatsContainer(
+              stats: pokemonDetails.stats,
+              baseExperience: pokemonDetails.baseExperience,
+            ),
           ],
         ),
       ),
