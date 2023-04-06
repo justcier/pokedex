@@ -68,7 +68,7 @@ class PokemonDetailsStatsContainer extends StatelessWidget {
   }
 }
 
-class _BaseStatsRow extends StatelessWidget {
+class _BaseStatsRow extends StatefulWidget {
   final String statName;
   final int statValue;
 
@@ -78,20 +78,59 @@ class _BaseStatsRow extends StatelessWidget {
   });
 
   @override
+  State<_BaseStatsRow> createState() => _BaseStatsRowState();
+}
+
+class _BaseStatsRowState extends State<_BaseStatsRow> {
+  int statusValue = 1;
+  static const statBarWidth = 250.0;
+  static const statMaxValue = 300;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() => statusValue = widget.statValue);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          pokemonNameStatsToShortcuts[statName]!,
+          pokemonNameStatsToShortcuts[widget.statName]!,
           style: TextStyleTokens.mainTitle,
         ),
-        Container(
-          width: 250,
-          color: pokemonStatsToColorMap[statName],
-          child: Text(
-            statValue.toString(),
-            style: TextStyleTokens.mainTitle,
+        const SizedBox(width: Dimensions.sizeM),
+        Flexible(
+          child: Stack(
+            children: [
+              Container(
+                width: statBarWidth,
+                height: Dimensions.sizeXL,
+                color: Colors.white,
+              ),
+              AnimatedContainer(
+                width: statusValue.toDouble() * statBarWidth / statMaxValue,
+                height: Dimensions.sizeXL,
+                alignment: Alignment.centerRight,
+                color: pokemonStatsToColorMap[widget.statName],
+                duration: const Duration(milliseconds: 600),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: Dimensions.sizeS),
+                  child: Text(
+                    widget.statValue.toString(),
+                    style: TextStyleTokens.mainTitleWhite,
+                  ),
+                ),
+              ),
+            ],
+            // children: Text(
+            //   statValue.toString(),
+            //   style: TextStyleTokens.mainTitle,
+            // ),
           ),
         ),
       ],

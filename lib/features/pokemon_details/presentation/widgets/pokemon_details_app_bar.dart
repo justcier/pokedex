@@ -48,7 +48,7 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
         ],
       ),
       flexibleSpace: AnimatedContainer(
-        duration: const Duration(milliseconds: 450),
+        duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
           borderRadius: _borderRadius,
