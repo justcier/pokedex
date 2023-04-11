@@ -82,15 +82,17 @@ class _BaseStatsRow extends StatefulWidget {
 }
 
 class _BaseStatsRowState extends State<_BaseStatsRow> {
-  int statusValue = 1;
+  int statValue = 1;
   static const statBarWidth = 250.0;
   static const statMaxValue = 300;
+  static const statusTextMoveBoundValue = 30;
+  static const additionalSpacePerCharacter = 13;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() => statusValue = widget.statValue);
+      setState(() => statValue = widget.statValue);
     });
   }
 
@@ -113,27 +115,40 @@ class _BaseStatsRowState extends State<_BaseStatsRow> {
                 color: Colors.white,
               ),
               AnimatedContainer(
-                width: statusValue.toDouble() * statBarWidth / statMaxValue,
+                width: filledBarWidth,
                 height: Dimensions.sizeXL,
                 alignment: Alignment.centerRight,
                 color: pokemonStatsToColorMap[widget.statName],
                 duration: const Duration(milliseconds: 600),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: Dimensions.sizeS),
+              ),
+              Positioned(
+                left: statValue > statusTextMoveBoundValue
+                    ? filledBarWidth -
+                        statValueLength * additionalSpacePerCharacter
+                    : filledBarWidth + Dimensions.sizeS,
+                top: Dimensions.sizeM / 2,
+                child: AnimatedOpacity(
+                  opacity: statValue == widget.statValue ? 1 : 0,
+                  duration: const Duration(milliseconds: 800),
                   child: Text(
                     widget.statValue.toString(),
-                    style: TextStyleTokens.mainTitleWhite,
+                    style: TextStyleTokens.mainTitle.copyWith(
+                      color: statValue > statusTextMoveBoundValue
+                          ? ColorTokens.mainFontColor
+                          : ColorTokens.secondaryColor,
+                    ),
                   ),
                 ),
               ),
             ],
-            // children: Text(
-            //   statValue.toString(),
-            //   style: TextStyleTokens.mainTitle,
-            // ),
           ),
         ),
       ],
     );
   }
+
+  int get statValueLength => statValue.toString().length;
+
+  double get filledBarWidth =>
+      statValue.toDouble() * statBarWidth / statMaxValue;
 }
