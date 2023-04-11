@@ -1,9 +1,49 @@
 {
   "name": "bulbasaur",
+  "base_experience": 64,
   "id": 1,
+  "height": 7,
   "sprites": {
     "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+  },
+  "stats": [
+    {
+      "base_stat": 45,
+      "stat": {
+        "name": "hp"
+      }
     },
+    {
+      "base_stat": 49,
+      "stat": {
+        "name": "attack"
+      }
+    },
+    {
+      "base_stat": 49,
+      "stat": {
+        "name": "defense"
+      }
+    },
+    {
+      "base_stat": 65,
+      "stat": {
+        "name": "special-attack"
+      }
+    },
+    {
+      "base_stat": 65,
+      "stat": {
+        "name": "special-defense"
+      }
+    },
+    {
+      "base_stat": 45,
+      "stat": {
+        "name": "speed"
+      }
+    }
+  ],
   "types": [
     {
       "type": {
@@ -15,5 +55,6 @@
         "name": "poison"
       }
     }
-  ]
+  ],
+  "weight": 69
 }
