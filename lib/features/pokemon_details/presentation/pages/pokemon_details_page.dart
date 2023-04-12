@@ -30,23 +30,20 @@ class PokemonDetailsPage extends StatelessWidget {
         margin: const EdgeInsets.all(Dimensions.sizeL),
         child: Column(
           children: [
-            Container(
-                padding: const EdgeInsets.all(Dimensions.sizeXXL),
-                child: Text(
-                  pokemonDetails.name,
-                  style: TextStyleTokens.mainTitleBig,
-                )),
-            PokemonDetailsTypesRow(types: pokemonDetails.types),
-            const SizedBox(
-              height: Dimensions.sizeXXL,
+            Padding(
+              padding: const EdgeInsets.all(Dimensions.sizeXXL),
+              child: Text(
+                pokemonDetails.name,
+                style: TextStyleTokens.mainTitleBig,
+              ),
             ),
+            PokemonDetailsTypesRow(types: pokemonDetails.types),
+            const SizedBox(height: Dimensions.sizeXXL),
             PokemonDetailsBodyAttributesRow(
               weight: pokemonDetails.weight,
               height: pokemonDetails.height,
             ),
-            const SizedBox(
-              height: Dimensions.sizeXXL,
-            ),
+            const SizedBox(height: Dimensions.sizeXXL),
             PokemonDetailsStatsContainer(
               stats: pokemonDetails.stats,
               baseExperience: pokemonDetails.baseExperience,

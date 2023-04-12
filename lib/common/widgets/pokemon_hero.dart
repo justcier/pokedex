@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class PokemonHero extends StatelessWidget {
   final String pokemonImageUrl;
   final int pokemonId;
+
   const PokemonHero({
     required this.pokemonImageUrl,
     required this.pokemonId,

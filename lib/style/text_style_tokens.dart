@@ -32,4 +32,3 @@ class TextStyleTokens {
   static TextStyle mainDescription =
       description.copyWith(color: ColorTokens.primaryColor);
 }
-// GoogleFonts.pressStart2PTextTheme

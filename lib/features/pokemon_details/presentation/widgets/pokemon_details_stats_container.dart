@@ -32,7 +32,7 @@ class PokemonDetailsStatsContainer extends StatelessWidget {
             Strings.pokemonDetailsStatsLabel,
             style: TextStyleTokens.mainTitle,
           ),
-          Container(
+          Padding(
             padding: const EdgeInsets.all(Dimensions.sizeXL),
             child: Column(
               children: [
@@ -45,14 +45,16 @@ class PokemonDetailsStatsContainer extends StatelessWidget {
                       return const SizedBox.shrink();
                     }
 
-                    return Container(
+                    return Padding(
                       padding: const EdgeInsets.all(Dimensions.sizeM),
                       child: _BaseStatsRow(
-                          statName: statName, statValue: statValue),
+                        statName: statName,
+                        statValue: statValue,
+                      ),
                     );
                   }).toList(),
                 ),
-                Container(
+                Padding(
                   padding: const EdgeInsets.all(Dimensions.sizeM),
                   child: _BaseStatsRow(
                     statName: 'experience',

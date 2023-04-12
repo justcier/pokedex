@@ -17,8 +17,10 @@ class _PokeballLoaderState extends State<PokeballLoader>
     super.initState();
     controller = FlutterGifController(vsync: this);
     controller.repeat(
-        min: 0, max: 4, period: const Duration(milliseconds: 200));
-    // controller.forward();
+      min: 0,
+      max: 4,
+      period: const Duration(milliseconds: 200),
+    );
   }
 
   @override
