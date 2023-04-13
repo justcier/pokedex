@@ -36,11 +36,13 @@ class PokemonListWidget extends StatelessWidget {
           return const PokeballLoader();
         }
 
+        final pokemonDetails = pokemonDetailsList[index];
+
         return GestureDetector(
           onTap: () => context.router.push(
-            PokemonDetailsRoute(pokemonDetails: pokemonDetailsList[index]),
+            PokemonDetailsRoute(pokemonDetails: pokemonDetails),
           ),
-          child: PokemonTileContent(pokemonDetails: pokemonDetailsList[index]),
+          child: PokemonTileContent(pokemonDetails: pokemonDetails),
         );
       },
     );

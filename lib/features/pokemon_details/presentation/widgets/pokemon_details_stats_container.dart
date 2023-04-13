@@ -57,7 +57,7 @@ class PokemonDetailsStatsContainer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(Dimensions.sizeM),
                   child: _BaseStatsRow(
-                    statName: 'experience',
+                    statName: Strings.expStatFullName,
                     statValue: baseExperience,
                   ),
                 ),
@@ -100,13 +100,16 @@ class _BaseStatsRowState extends State<_BaseStatsRow> {
 
   @override
   Widget build(BuildContext context) {
+    final statName = pokemonNameStatsToShortcuts[widget.statName];
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          pokemonNameStatsToShortcuts[widget.statName]!,
-          style: TextStyleTokens.mainTitle,
-        ),
+        if (statName != null)
+          Text(
+            statName,
+            style: TextStyleTokens.mainTitle,
+          ),
         const SizedBox(width: Dimensions.sizeM),
         Flexible(
           child: Stack(
@@ -114,7 +117,7 @@ class _BaseStatsRowState extends State<_BaseStatsRow> {
               Container(
                 width: statBarWidth,
                 height: Dimensions.sizeXL,
-                color: Colors.white,
+                color: ColorTokens.white,
               ),
               AnimatedContainer(
                 width: filledBarWidth,
