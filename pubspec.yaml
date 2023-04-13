@@ -8,18 +8,23 @@ environment:
   sdk: '>=2.19.2 <3.0.0'
 
 dependencies:
+  auto_route: ^6.0.3
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  flutter_gif: ^0.0.4
   freezed_annotation: ^2.2.0
   get_it: ^7.2.0
+  google_fonts: ^4.0.3
   http: ^0.13.5
   injectable: ^1.5.3
   json_annotation: ^4.7.0
   mocktail: ^0.3.0
+  palette_generator: ^0.3.3+2
 
 dev_dependencies:
+  auto_route_generator: ^6.0.1
   bloc_test: ^9.1.0
   build_runner: ^2.3.3
   flutter_lints: ^2.0.0
@@ -35,10 +40,8 @@ flutter:
 
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/pokeball.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

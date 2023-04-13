@@ -36,7 +36,7 @@ void main() {
     );
   }
 
-  void verifyPokemonDetailsListCalls({int currentPage = 1}) {
+  void verifyPokemonDetailsCalls({int currentPage = 1}) {
     final pageStartIndex = defaultPageSize * (currentPage - 1) + 1;
     final pageEndIndex = defaultPageSize * currentPage + 1;
 
@@ -55,14 +55,14 @@ void main() {
         pageLoadedState(),
       ],
       verify: (_) => [
-        verifyPokemonDetailsListCalls(),
+        verifyPokemonDetailsCalls(),
       ],
     );
   });
 
   group('fetchNextPage', () {
     blocTest<PokemonListCubit, PokemonListState>(
-      'should not emit anything if state.isLading',
+      'should not emit anything if state.isLoading',
       seed: () =>
           pageLoadedState().copyWith(status: PokemonListStateStatus.loading),
       build: buildCubit,
@@ -78,7 +78,7 @@ void main() {
         pageLoadedState().copyWith(status: PokemonListStateStatus.loading),
         pageLoadedState(currentPage: 2),
       ],
-      verify: (_) => [verifyPokemonDetailsListCalls(currentPage: 2)],
+      verify: (_) => [verifyPokemonDetailsCalls(currentPage: 2)],
     );
   });
 }

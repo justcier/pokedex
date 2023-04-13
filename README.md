@@ -5,12 +5,14 @@ application which allows users to search for pokemon.
 
 ## Project presentation
 ### App screens
-| Home page  |
-| ------------- |
-|<img width="237" alt="image" src="https://user-images.githubusercontent.com/71925819/228244394-0fb637bd-8522-4c32-8673-cede325e12e8.png">
+| Home page  | Pokemon Details Page |
+| ------------- | ------------- |
+|<img width="237" alt="image" src="https://user-images.githubusercontent.com/71925819/228244394-0fb637bd-8522-4c32-8673-cede325e12e8.png"> | <img width="239" alt="Screenshot 2023-04-11 at 13 31 14" src="https://user-images.githubusercontent.com/71925819/231162927-b53b426b-7925-4d18-90f6-9e17e0402579.png">
 
 ### App showcase
-https://user-images.githubusercontent.com/71925819/228243954-75b62302-91f5-4841-9f15-efbf37a317b2.mov
+https://user-images.githubusercontent.com/71925819/231162760-e69651c3-0426-469d-81f9-e106df9b9ae2.mov
+
+
 
 ## Technology stack and main dependencies
 | Flutter  | v3.3.3  |
@@ -18,6 +20,7 @@ https://user-images.githubusercontent.com/71925819/228243954-75b62302-91f5-4841-
 | Code generation  | freezed |
 | State management | flutter_bloc |
 | Dependency injection | get_it injectable |
+| Navigation  | auto_route |
 
 
 ## App architecture and folder structure

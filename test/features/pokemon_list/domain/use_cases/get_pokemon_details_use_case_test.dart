@@ -16,14 +16,14 @@ void main() {
       'should correctly propagate the call to repository and return pokemon details on a successful call',
       () async {
         // Arrange
-        when(() => pokemonRepository.getPokemonDetails('1'))
+        when(() => pokemonRepository.getPokemonDetails(tId))
             .thenAnswer((_) async => tPokemonDetails);
 
         // Act
-        final result = await useCase.call('1');
+        final result = await useCase.call(tId);
 
         // Assert
-        verify(() => pokemonRepository.getPokemonDetails('1')).called(1);
+        verify(() => pokemonRepository.getPokemonDetails(tId)).called(1);
         expect(result, tPokemonDetails);
       },
     );

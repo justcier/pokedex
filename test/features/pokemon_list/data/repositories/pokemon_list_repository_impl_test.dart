@@ -19,14 +19,14 @@ void main() {
       'should correctly propagate the call to remote data source and return pokemon details on a successful call',
       () async {
         // Arrange
-        when(() => pokemonListRemoteDataSource.getPokemonDetails('1'))
+        when(() => pokemonListRemoteDataSource.getPokemonDetails(tId))
             .thenAnswer((_) async => tPokemonDetails);
 
         // Act
-        final result = await pokemonListRepositoryImpl.getPokemonDetails('1');
+        final result = await pokemonListRepositoryImpl.getPokemonDetails(tId);
 
         // Assert
-        verify(() => pokemonListRemoteDataSource.getPokemonDetails('1'))
+        verify(() => pokemonListRemoteDataSource.getPokemonDetails(tId))
             .called(1);
         expect(result, tPokemonDetails);
       },

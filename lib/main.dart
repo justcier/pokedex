@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
-
-import 'features/home/presentation/pages/home_page.dart';
+import 'package:pokedex_rest/services/navigation_service/navigation_service.dart';
 
 void main() {
   configureInjector();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final _appRouter = AppRouter();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Pokedex',
-      home: HomePage(),
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
     );
   }
 }

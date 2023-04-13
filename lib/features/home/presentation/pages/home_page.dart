@@ -1,13 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
+import 'package:pokedex_rest/common/widgets/pokeball_loader.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
+import 'package:pokedex_rest/style/color_tokens.dart';
 
+@RoutePage()
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -38,6 +42,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
+      appBar: AppBar(
+        title: const Text(Strings.appBarHomePageTitle),
+        backgroundColor: ColorTokens.secondaryColor,
+      ),
       body: Center(
         child: BlocBuilder<PokemonListCubit, PokemonListState>(
           bloc: _cubit,
@@ -45,8 +53,10 @@ class _HomePageState extends State<HomePage> {
             final List<PokemonDetails>? pokemonDetailsList =
                 state.pokemonDetailsList;
 
-            if (pokemonDetailsList == null) {
-              return const CircularProgressIndicator();
+            if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
+              return const PokeballLoader();
+            } else if (pokemonDetailsList == null) {
+              return const SizedBox.shrink();
             }
 
             return PokemonListWidget(
@@ -57,7 +67,6 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
-      title: Strings.appBarHomePageTitle,
     );
   }
 
