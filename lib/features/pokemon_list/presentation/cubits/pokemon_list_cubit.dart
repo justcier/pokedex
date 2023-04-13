@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/add_to_favourites_use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
@@ -42,5 +43,9 @@ class PokemonListCubit extends Cubit<PokemonListState> {
     if (!state.isLoading && currentPage != null) {
       await getPokemonDetailsList(page: currentPage + 1);
     }
+  }
+
+  Future<void> addToFavourites(PokemonDetails pokemonDetails) async {
+    (await getIt.getAsync<AddToFavouritesUseCase>()).call(pokemonDetails);
   }
 }
