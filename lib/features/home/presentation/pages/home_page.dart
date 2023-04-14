@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
 import 'package:pokedex_rest/common/widgets/pokeball_loader.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
+import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_cubit.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
@@ -20,20 +21,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final PokemonListCubit _cubit = getIt<PokemonListCubit>();
+  final PokemonListCubit _pokemonListcubit = getIt<PokemonListCubit>();
+  final FavouritesCubit _favouritesCubit = getIt<FavouritesCubit>();
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _cubit.getPokemonDetailsList();
-
+    _pokemonListcubit.getPokemonDetailsList();
     _scrollController.addListener(_fetchMoreDataListener);
   }
 
   @override
   void dispose() {
-    _cubit.close();
+    _pokemonListcubit.close();
+    _favouritesCubit.close();
     _scrollController.removeListener(_fetchMoreDataListener);
     _scrollController.dispose();
     super.dispose();
@@ -48,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: BlocBuilder<PokemonListCubit, PokemonListState>(
-          bloc: _cubit,
+          bloc: _pokemonListcubit,
           builder: (_, PokemonListState state) {
             final List<PokemonDetails>? pokemonDetailsList =
                 state.pokemonDetailsList;
@@ -63,6 +65,8 @@ class _HomePageState extends State<HomePage> {
               pokemonDetailsList: pokemonDetailsList,
               gridViewScrollController: _scrollController,
               isLoading: state.isLoading,
+              onDoubleTap: (pokemonDetails) =>
+                  _favouritesCubit.addToFavourites(pokemonDetails),
             );
           },
         ),
@@ -72,7 +76,7 @@ class _HomePageState extends State<HomePage> {
 
   void _fetchMoreDataListener() {
     if (_scrollController.position.extentAfter == 0) {
-      _cubit.fetchNextPage();
+      _pokemonListcubit.fetchNextPage();
     }
   }
 }
