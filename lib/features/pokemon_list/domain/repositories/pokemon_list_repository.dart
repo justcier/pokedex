@@ -3,5 +3,5 @@ import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details
 abstract class PokemonListRepository {
   Future<PokemonDetails> getPokemonDetails(String id);
 
-  void addToFavourites(PokemonDetails pokemonDetails);
+  Future<void> addToFavourites(PokemonDetails pokemonDetails);
 }

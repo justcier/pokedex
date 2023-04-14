@@ -4,12 +4,12 @@ import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details
 import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_list_repository.dart';
 
 @injectable
-class AddToFavouritesUseCase implements UseCase<void, PokemonDetails> {
+class AddToFavouritesUseCase implements UseCase<Future<void>, PokemonDetails> {
   final PokemonListRepository _pokemonListRepository;
 
   AddToFavouritesUseCase(this._pokemonListRepository);
 
   @override
-  void call(PokemonDetails pokemonDetails) =>
+  Future<void> call(PokemonDetails pokemonDetails) =>
       _pokemonListRepository.addToFavourites(pokemonDetails);
 }

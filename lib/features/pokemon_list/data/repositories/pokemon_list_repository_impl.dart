@@ -20,7 +20,7 @@ class PokemonListRepositoryImpl implements PokemonListRepository {
   }
 
   @override
-  void addToFavourites(PokemonDetails pokemonDetails) {
+  Future<void> addToFavourites(PokemonDetails pokemonDetails) {
     return pokemonListLocalDataSource.addToFavourites(pokemonDetails);
   }
 }

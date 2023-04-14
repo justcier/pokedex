@@ -13,7 +13,7 @@ class PokemonListLocalDataSourceImpl implements PokemonListLocalDataSource {
   PokemonListLocalDataSourceImpl(this._sharedPreferences);
 
   @override
-  void addToFavourites(PokemonDetails pokemonDetails) async {
+  Future<void> addToFavourites(PokemonDetails pokemonDetails) async {
     await _sharedPreferences.setString(
       SharedPrefsKeys.favouritePokemon,
       jsonEncode(pokemonDetails),
