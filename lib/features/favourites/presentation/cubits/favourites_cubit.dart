@@ -9,7 +9,28 @@ import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 class FavouritesCubit extends Cubit<FavouritesState> {
   FavouritesCubit() : super(FavouritesState.initial());
 
-  Future<void> addToFavourites(PokemonDetails pokemonDetails) async {
-    (await getIt.getAsync<AddToFavouritesUseCase>()).call(pokemonDetails);
+  Future<void> toggleFavouriteState(PokemonDetails pokemonDetails) async {
+    if (!state.favouritesList.contains(pokemonDetails)) {
+      (await getIt.getAsync<AddToFavouritesUseCase>()).call(pokemonDetails);
+      emit(
+        state.copyWith(
+          favouritesList: [
+            ...state.favouritesList,
+            pokemonDetails,
+          ],
+        ),
+      );
+    } else {
+      // (await getIt.getAsync<RemoveFromFavouritesUseCase>()).call(pokemonDetails);
+      emit(
+        state.copyWith(
+          favouritesList: state.favouritesList
+              .where((favourite) => favourite != pokemonDetails)
+              .toList(),
+        ),
+      );
+    }
+
+    print(state.favouritesList);
   }
 }

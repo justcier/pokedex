@@ -6,8 +6,8 @@ import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_l
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 
-import '../../../mocks.dart';
-import '../../../test_data.dart';
+import '../../../../mocks.dart';
+import '../../../../test_data.dart';
 
 void main() {
   final GetPokemonDetailsUseCase getPokemonDetailsUseCase =

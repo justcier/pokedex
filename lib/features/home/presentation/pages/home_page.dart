@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               gridViewScrollController: _scrollController,
               isLoading: state.isLoading,
               onDoubleTap: (pokemonDetails) =>
-                  _favouritesCubit.addToFavourites(pokemonDetails),
+                  _favouritesCubit.toggleFavouriteState(pokemonDetails),
             );
           },
         ),
