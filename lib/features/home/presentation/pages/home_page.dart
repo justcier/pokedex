@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokedex_rest/common/widgets/common_bottom_navigation_bar.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
 import 'package:pokedex_rest/common/widgets/pokeball_loader.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
@@ -21,20 +22,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final PokemonListCubit _pokemonListcubit = getIt<PokemonListCubit>();
+  final PokemonListCubit _pokemonListCubit = getIt<PokemonListCubit>();
   final FavouritesCubit _favouritesCubit = getIt<FavouritesCubit>();
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _pokemonListcubit.getPokemonDetailsList();
+    _pokemonListCubit.getPokemonDetailsList();
     _scrollController.addListener(_fetchMoreDataListener);
   }
 
   @override
   void dispose() {
-    _pokemonListcubit.close();
+    _pokemonListCubit.close();
     _favouritesCubit.close();
     _scrollController.removeListener(_fetchMoreDataListener);
     _scrollController.dispose();
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: BlocBuilder<PokemonListCubit, PokemonListState>(
-          bloc: _pokemonListcubit,
+          bloc: _pokemonListCubit,
           builder: (_, PokemonListState state) {
             final List<PokemonDetails>? pokemonDetailsList =
                 state.pokemonDetailsList;
@@ -71,12 +72,13 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
+      navigationBar: const CommonBottomNavigationBar(),
     );
   }
 
   void _fetchMoreDataListener() {
     if (_scrollController.position.extentAfter == 0) {
-      _pokemonListcubit.fetchNextPage();
+      _pokemonListCubit.fetchNextPage();
     }
   }
 }
