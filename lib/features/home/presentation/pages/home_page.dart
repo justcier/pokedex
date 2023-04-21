@@ -27,7 +27,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      body: screens[selectedIndex],
+      // Thanks to IndexedStack PokemonListPage isn't fetching data every time.
+      body: IndexedStack(
+        index: selectedIndex,
+        children: screens,
+      ),
       navigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         backgroundColor: ColorTokens.secondaryColor,

@@ -42,35 +42,38 @@ class _PokemonListPageState extends State<PokemonListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return CommonScaffold(
-      appBar: AppBar(
-        title: Text(
-          Strings.appBarHomePageTitle,
-          style: TextStyleTokens.mainTitleWhite,
+    return BlocProvider<FavouritesCubit>.value(
+      value: _favouritesCubit,
+      child: CommonScaffold(
+        appBar: AppBar(
+          title: Text(
+            Strings.appBarHomePageTitle,
+            style: TextStyleTokens.mainTitleWhite,
+          ),
+          backgroundColor: ColorTokens.secondaryColor,
         ),
-        backgroundColor: ColorTokens.secondaryColor,
-      ),
-      body: Center(
-        child: BlocBuilder<PokemonListCubit, PokemonListState>(
-          bloc: _pokemonListCubit,
-          builder: (_, PokemonListState state) {
-            final List<PokemonDetails>? pokemonDetailsList =
-                state.pokemonDetailsList;
+        body: Center(
+          child: BlocBuilder<PokemonListCubit, PokemonListState>(
+            bloc: _pokemonListCubit,
+            builder: (_, PokemonListState state) {
+              final List<PokemonDetails>? pokemonDetailsList =
+                  state.pokemonDetailsList;
 
-            if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
-              return const PokeballLoader();
-            } else if (pokemonDetailsList == null) {
-              return const SizedBox.shrink();
-            }
+              if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
+                return const PokeballLoader();
+              } else if (pokemonDetailsList == null) {
+                return const SizedBox.shrink();
+              }
 
-            return PokemonListWidget(
-              pokemonDetailsList: pokemonDetailsList,
-              gridViewScrollController: _scrollController,
-              isLoading: state.isLoading,
-              onDoubleTap: (pokemonDetails) =>
-                  _favouritesCubit.toggleFavouriteState(pokemonDetails),
-            );
-          },
+              return PokemonListWidget(
+                pokemonDetailsList: pokemonDetailsList,
+                gridViewScrollController: _scrollController,
+                isLoading: state.isLoading,
+                onDoubleTap: (pokemonDetails) =>
+                    _favouritesCubit.toggleFavouriteState(pokemonDetails),
+              );
+            },
+          ),
         ),
       ),
     );
