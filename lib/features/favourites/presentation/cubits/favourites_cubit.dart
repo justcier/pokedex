@@ -5,7 +5,7 @@ import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/add_to_favourites_use_case.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 
-@injectable
+@lazySingleton
 class FavouritesCubit extends Cubit<FavouritesState> {
   FavouritesCubit() : super(FavouritesState.initial());
 
@@ -30,7 +30,6 @@ class FavouritesCubit extends Cubit<FavouritesState> {
         ),
       );
     }
-
-    print(state.favouritesList);
+    print(state);
   }
 }

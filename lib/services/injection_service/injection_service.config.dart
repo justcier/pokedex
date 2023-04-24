@@ -56,7 +56,7 @@ _i1.GetIt $initGetIt(
   final registerService = _$RegisterService();
   gh.factory<_i3.Client>(() => injectionRegistrationService.client);
   gh.factory<_i4.ColorService>(() => _i4.ColorService());
-  gh.factory<_i5.FavouritesCubit>(() => _i5.FavouritesCubit());
+  gh.lazySingleton<_i5.FavouritesCubit>(() => _i5.FavouritesCubit());
   gh.factory<_i6.NetworkService>(
       () => _i7.NetworkServiceImpl(client: get<_i3.Client>()));
   gh.factory<_i8.PokemonListCubit>(() => _i8.PokemonListCubit());

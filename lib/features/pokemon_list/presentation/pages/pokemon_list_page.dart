@@ -21,7 +21,6 @@ class PokemonListPage extends StatefulWidget {
 
 class _PokemonListPageState extends State<PokemonListPage> {
   final PokemonListCubit _pokemonListCubit = getIt<PokemonListCubit>();
-  final FavouritesCubit _favouritesCubit = getIt<FavouritesCubit>();
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -34,7 +33,6 @@ class _PokemonListPageState extends State<PokemonListPage> {
   @override
   void dispose() {
     _pokemonListCubit.close();
-    _favouritesCubit.close();
     _scrollController.removeListener(_fetchMoreDataListener);
     _scrollController.dispose();
     super.dispose();
@@ -42,38 +40,36 @@ class _PokemonListPageState extends State<PokemonListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<FavouritesCubit>.value(
-      value: _favouritesCubit,
-      child: CommonScaffold(
-        appBar: AppBar(
-          title: Text(
-            Strings.appBarHomePageTitle,
-            style: TextStyleTokens.mainTitleWhite,
-          ),
-          backgroundColor: ColorTokens.secondaryColor,
+    return CommonScaffold(
+      appBar: AppBar(
+        title: Text(
+          Strings.appBarHomePageTitle,
+          style: TextStyleTokens.mainTitleWhite,
         ),
-        body: Center(
-          child: BlocBuilder<PokemonListCubit, PokemonListState>(
-            bloc: _pokemonListCubit,
-            builder: (_, PokemonListState state) {
-              final List<PokemonDetails>? pokemonDetailsList =
-                  state.pokemonDetailsList;
+        backgroundColor: ColorTokens.secondaryColor,
+      ),
+      body: Center(
+        child: BlocBuilder<PokemonListCubit, PokemonListState>(
+          bloc: _pokemonListCubit,
+          builder: (_, PokemonListState state) {
+            final List<PokemonDetails>? pokemonDetailsList =
+                state.pokemonDetailsList;
 
-              if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
-                return const PokeballLoader();
-              } else if (pokemonDetailsList == null) {
-                return const SizedBox.shrink();
-              }
+            if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
+              return const PokeballLoader();
+            } else if (pokemonDetailsList == null) {
+              return const SizedBox.shrink();
+            }
 
-              return PokemonListWidget(
-                pokemonDetailsList: pokemonDetailsList,
-                gridViewScrollController: _scrollController,
-                isLoading: state.isLoading,
-                onDoubleTap: (pokemonDetails) =>
-                    _favouritesCubit.toggleFavouriteState(pokemonDetails),
-              );
-            },
-          ),
+            return PokemonListWidget(
+              pokemonDetailsList: pokemonDetailsList,
+              gridViewScrollController: _scrollController,
+              isLoading: state.isLoading,
+              onDoubleTap: (pokemonDetails) => context
+                  .read<FavouritesCubit>()
+                  .toggleFavouriteState(pokemonDetails),
+            );
+          },
         ),
       ),
     );
