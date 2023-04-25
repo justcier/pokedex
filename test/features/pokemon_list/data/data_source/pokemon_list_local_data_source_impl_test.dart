@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pokedex_rest/core/data/shared_prefs_keys.dart';
 import 'package:pokedex_rest/features/pokemon_list/data/data_sources/pokemon_list_local_data_source_impl.dart';
+import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../mocks.dart';
@@ -37,6 +38,44 @@ void main() {
               jsonEncode(tPokemonDetailsList),
             ),
           ).called(1);
+        },
+      );
+    });
+
+    group('getStoredFavourites', () {
+      test(
+        'should return all favourites pokemon stored locally',
+        () {
+          // Arrange
+          when(() => sharedPreferences.getString(captureAny())).thenAnswer(
+              (_) => jsonEncode([tPokemonDetailsList.first.toJson()]));
+
+          final List<PokemonDetails> storedFavourites = tPokemonDetailsList;
+
+          // Act
+          final result = pokemonListLocalDataSourceImpl.getStoredFavourites();
+
+          // Assert
+          verify(() => sharedPreferences
+              .getString(SharedPrefsKeys.favouritesPokemon)).called(1);
+          expect(result, storedFavourites);
+        },
+      );
+
+      test(
+        'should return empty list when shared preferences returns null',
+        () {
+          // Arrange
+          when(() => sharedPreferences.getString(captureAny()))
+              .thenAnswer((_) => null);
+
+          // Act
+          final result = pokemonListLocalDataSourceImpl.getStoredFavourites();
+
+          // Assert
+          verify(() => sharedPreferences
+              .getString(SharedPrefsKeys.favouritesPokemon)).called(1);
+          expect(result, []);
         },
       );
     });

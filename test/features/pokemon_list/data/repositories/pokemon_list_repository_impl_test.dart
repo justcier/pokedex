@@ -62,4 +62,23 @@ void main() {
       },
     );
   });
+
+  group('getStoredFavourites', () {
+    test(
+      'should correctly propagate the call to local data source and return'
+      'stored favourites pokemon from local storage on a successful call',
+      () {
+        // Arrange
+        when(pokemonListLocalDataSource.getStoredFavourites)
+            .thenReturn(tPokemonDetailsList);
+
+        // Act
+        final result = pokemonListRepositoryImpl.getStoredFavourites();
+
+        // Assert
+        verify(pokemonListRepositoryImpl.getStoredFavourites).called(1);
+        expect(result, tPokemonDetailsList);
+      },
+    );
+  });
 }
