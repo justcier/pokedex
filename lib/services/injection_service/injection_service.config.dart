@@ -22,7 +22,7 @@ import 'package:pokedex_rest/features/pokemon_list/data/repositories/pokemon_lis
     as _i15;
 import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_list_repository.dart'
     as _i14;
-import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/add_to_favourites_use_case.dart'
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/store_favourites_use_case.dart'
     as _i16;
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart'
     as _i17;
@@ -73,8 +73,8 @@ _i1.GetIt $initGetIt(
             pokemonListLocalDataSource:
                 await get.getAsync<_i12.PokemonListLocalDataSource>(),
           ));
-  gh.factoryAsync<_i16.AddToFavouritesUseCase>(() async =>
-      _i16.AddToFavouritesUseCase(
+  gh.factoryAsync<_i16.StoreFavouritesUseCase>(() async =>
+      _i16.StoreFavouritesUseCase(
           await get.getAsync<_i14.PokemonListRepository>()));
   gh.factoryAsync<_i17.GetPokemonDetailsUseCase>(() async =>
       _i17.GetPokemonDetailsUseCase(

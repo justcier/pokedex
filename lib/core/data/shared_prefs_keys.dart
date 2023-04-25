@@ -1,3 +1,3 @@
 abstract class SharedPrefsKeys {
-  static const String favouritePokemon = 'favouritePokemon';
+  static const String favouritesPokemon = 'favouritesPokemon';
 }

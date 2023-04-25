@@ -18,25 +18,30 @@ class FavouriteIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FavouritesCubit, FavouritesState>(
       builder: (context, state) {
-        return Container(
-          alignment: Alignment.topRight,
-          padding: const EdgeInsets.symmetric(
-            vertical: Dimensions.sizeL,
-            horizontal: Dimensions.sizeXXL,
-          ),
-          child: AnimatedCrossFade(
-            duration: const Duration(milliseconds: 350),
-            firstChild: const Icon(
-              Icons.favorite,
-              color: ColorTokens.primaryColor,
+        return GestureDetector(
+          onTap: () => context
+              .read<FavouritesCubit>()
+              .toggleFavouriteState(pokemonDetails),
+          child: Container(
+            alignment: Alignment.topRight,
+            padding: const EdgeInsets.symmetric(
+              vertical: Dimensions.sizeL,
+              horizontal: Dimensions.sizeXXL,
             ),
-            secondChild: const Icon(
-              Icons.favorite_border,
-              color: ColorTokens.darkBackgroundColor,
+            child: AnimatedCrossFade(
+              duration: const Duration(milliseconds: 350),
+              firstChild: const Icon(
+                Icons.favorite,
+                color: ColorTokens.primaryColor,
+              ),
+              secondChild: const Icon(
+                Icons.favorite_border,
+                color: ColorTokens.darkBackgroundColor,
+              ),
+              crossFadeState: state.favouritesList.contains(pokemonDetails)
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
             ),
-            crossFadeState: state.favouritesList.contains(pokemonDetails)
-                ? CrossFadeState.showFirst
-                : CrossFadeState.showSecond,
           ),
         );
       },

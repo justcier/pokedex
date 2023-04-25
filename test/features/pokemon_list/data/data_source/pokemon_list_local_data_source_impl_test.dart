@@ -16,7 +16,7 @@ void main() {
       PokemonListLocalDataSourceImpl(sharedPreferences);
 
   group('PokemonListLocalDataSourceImpl', () {
-    group('addToFavourite', () {
+    group('storeFavourite', () {
       test(
         'should store pokemonDetails',
         () async {
@@ -27,13 +27,14 @@ void main() {
               )).thenAnswer((_) async => true);
 
           // Act
-          await pokemonListLocalDataSourceImpl.addToFavourites(tPokemonDetails);
+          await pokemonListLocalDataSourceImpl
+              .storeFavourites(tPokemonDetailsList);
 
           // Assert
           verify(
             () => sharedPreferences.setString(
-              SharedPrefsKeys.favouritePokemon,
-              jsonEncode(tPokemonDetails),
+              SharedPrefsKeys.favouritesPokemon,
+              jsonEncode(tPokemonDetailsList),
             ),
           ).called(1);
         },

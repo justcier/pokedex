@@ -18,8 +18,8 @@ void main() {
   const int defaultPageSize = 20;
 
   setUpAll(() {
-    getIt.registerLazySingleton<GetPokemonDetailsUseCase>(
-      () => getPokemonDetailsUseCase,
+    getIt.registerLazySingletonAsync<GetPokemonDetailsUseCase>(
+      () async => getPokemonDetailsUseCase,
     );
     when(() => getPokemonDetailsUseCase.call(captureAny()))
         .thenAnswer((_) async => tPokemonDetails);

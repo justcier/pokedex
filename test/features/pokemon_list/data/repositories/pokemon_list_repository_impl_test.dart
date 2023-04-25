@@ -44,20 +44,20 @@ void main() {
     );
   });
 
-  group('addToFavourites', () {
+  group('storeFavourites', () {
     test(
       'should correctly propagate pokemonDetails to local data source on a successful call',
       () {
         // Arrange
         when(
-          () => pokemonListLocalDataSource.addToFavourites(captureAny()),
-        ).thenAnswer((_) async => tPokemonDetails);
+          () => pokemonListLocalDataSource.storeFavourites(captureAny()),
+        ).thenAnswer((_) async => tPokemonDetailsList);
         // Act
-        pokemonListRepositoryImpl.addToFavourites(tPokemonDetails);
+        pokemonListRepositoryImpl.storeFavourites(tPokemonDetailsList);
 
         // Assert
         verify(() =>
-                pokemonListLocalDataSource.addToFavourites(tPokemonDetails))
+                pokemonListLocalDataSource.storeFavourites(tPokemonDetailsList))
             .called(1);
       },
     );

@@ -9,3 +9,5 @@ const String tId = '1';
 final PokemonDetails tPokemonDetails = PokemonDetails.fromJson(
   jsonDecode(fixture(Fixtures.pokemonDetails)),
 );
+
+final List<PokemonDetails> tPokemonDetailsList = [tPokemonDetails];
