@@ -22,21 +22,23 @@ import 'package:pokedex_rest/features/pokemon_list/data/repositories/pokemon_lis
     as _i15;
 import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_list_repository.dart'
     as _i14;
-import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/store_favourites_use_case.dart'
-    as _i16;
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart'
     as _i17;
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_stored_favourites_use_case.dart'
+    as _i18;
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/store_favourites_use_case.dart'
+    as _i16;
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart'
     as _i8;
 import 'package:pokedex_rest/services/color_service/color_service.dart' as _i4;
 import 'package:pokedex_rest/services/injection_service/injection_registration_service.dart'
-    as _i18;
+    as _i19;
 import 'package:pokedex_rest/services/network_service/network_service.dart'
     as _i6;
 import 'package:pokedex_rest/services/network_service/network_service_impl.dart'
     as _i7;
 import 'package:pokedex_rest/services/registration_service/registration_service.dart'
-    as _i19;
+    as _i20;
 import 'package:shared_preferences/shared_preferences.dart'
     as _i11; // ignore_for_file: unnecessary_lambdas
 
@@ -79,10 +81,13 @@ _i1.GetIt $initGetIt(
   gh.factoryAsync<_i17.GetPokemonDetailsUseCase>(() async =>
       _i17.GetPokemonDetailsUseCase(
           await get.getAsync<_i14.PokemonListRepository>()));
+  gh.factoryAsync<_i18.GetStoredFavouritesUseCase>(() async =>
+      _i18.GetStoredFavouritesUseCase(
+          await get.getAsync<_i14.PokemonListRepository>()));
   return get;
 }
 
 class _$InjectionRegistrationService
-    extends _i18.InjectionRegistrationService {}
+    extends _i19.InjectionRegistrationService {}
 
-class _$RegisterService extends _i19.RegisterService {}
+class _$RegisterService extends _i20.RegisterService {}
