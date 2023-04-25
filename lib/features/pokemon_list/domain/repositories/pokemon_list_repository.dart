@@ -4,4 +4,6 @@ abstract class PokemonListRepository {
   Future<PokemonDetails> getPokemonDetails(String id);
 
   Future<void> storeFavourites(List<PokemonDetails> pokemonDetailsList);
+
+  List<PokemonDetails> getStoredFavourites();
 }

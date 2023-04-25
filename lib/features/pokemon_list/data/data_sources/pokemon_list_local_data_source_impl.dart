@@ -19,4 +19,20 @@ class PokemonListLocalDataSourceImpl implements PokemonListLocalDataSource {
       jsonEncode(pokemonDetailsList),
     );
   }
+
+  @override
+  List<PokemonDetails> getStoredFavourites() {
+    final String? favouritesPokemonString =
+        _sharedPreferences.getString(SharedPrefsKeys.favouritesPokemon);
+
+    if (favouritesPokemonString != null) {
+      final List<PokemonDetails> favourites =
+          (jsonDecode(favouritesPokemonString) as List)
+              .map((e) => PokemonDetails.fromJson(e as Map<String, dynamic>))
+              .toList();
+      return favourites;
+    } else {
+      return [];
+    }
+  }
 }
