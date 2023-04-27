@@ -4,13 +4,14 @@ import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_
 import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_state.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
-import 'package:pokedex_rest/style/dimensions.dart';
 
 class FavouriteIcon extends StatelessWidget {
   final PokemonDetails pokemonDetails;
+  final EdgeInsetsGeometry? padding;
 
   const FavouriteIcon({
     required this.pokemonDetails,
+    this.padding,
     Key? key,
   }) : super(key: key);
 
@@ -23,11 +24,8 @@ class FavouriteIcon extends StatelessWidget {
               .read<FavouritesCubit>()
               .toggleFavouriteState(pokemonDetails),
           child: Container(
-            alignment: Alignment.topRight,
-            padding: const EdgeInsets.symmetric(
-              vertical: Dimensions.sizeL,
-              horizontal: Dimensions.sizeXXL,
-            ),
+            alignment: Alignment.topLeft,
+            padding: padding,
             child: AnimatedCrossFade(
               duration: const Duration(milliseconds: 350),
               firstChild: const Icon(

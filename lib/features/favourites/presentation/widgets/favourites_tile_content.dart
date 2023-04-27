@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_rest/common/widgets/favourite_icon.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_body_attributes_row.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_types_row.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
@@ -26,11 +27,15 @@ class FavouritesTileContent extends StatelessWidget {
           color: ColorTokens.secondaryColor,
         ),
       ),
-      padding: const EdgeInsets.all(Dimensions.sizeXL),
+      padding: const EdgeInsets.all(Dimensions.sizeL),
+      margin: const EdgeInsets.symmetric(vertical: Dimensions.sizeM),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Image.network(pokemonDetails.sprites.frontDefault),
+          Stack(children: [
+            Image.network(pokemonDetails.sprites.frontDefault),
+            FavouriteIcon(pokemonDetails: pokemonDetails),
+          ]),
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

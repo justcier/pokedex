@@ -45,7 +45,13 @@ class PokemonTileContent extends StatelessWidget {
             ],
           ),
         ),
-        FavouriteIcon(pokemonDetails: pokemonDetails),
+        FavouriteIcon(
+          pokemonDetails: pokemonDetails,
+          padding: const EdgeInsets.symmetric(
+            vertical: Dimensions.sizeL,
+            horizontal: Dimensions.sizeXXL,
+          ),
+        ),
       ],
     );
   }

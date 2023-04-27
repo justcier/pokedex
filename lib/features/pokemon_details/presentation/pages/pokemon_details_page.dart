@@ -36,12 +36,14 @@ class PokemonDetailsPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(width: Dimensions.sizeXXXL),
                   Text(
                     pokemonDetails.name,
                     style: TextStyleTokens.mainTitleBig,
                   ),
-                  FavouriteIcon(pokemonDetails: pokemonDetails),
+                  const SizedBox(width: Dimensions.sizeM),
+                  FavouriteIcon(
+                    pokemonDetails: pokemonDetails,
+                  ),
                 ],
               ),
             ),
