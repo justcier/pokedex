@@ -5,7 +5,7 @@ import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
 import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_cubit.dart';
 import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_state.dart';
-import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
+import 'package:pokedex_rest/features/favourites/presentation/widgets/favourites_list_widget.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
 import 'package:pokedex_rest/style/text_style_tokens.dart';
 
@@ -26,10 +26,8 @@ class FavouritesPage extends StatelessWidget {
       body: BlocBuilder<FavouritesCubit, FavouritesState>(
         builder: (context, state) {
           print(state.favouritesList);
-          return PokemonListWidget(
-            pokemonDetailsList: state.favouritesList,
-            gridViewScrollController: ScrollController(),
-            isLoading: false,
+          return FavouritesListWidget(
+            favouritesList: state.favouritesList,
             onDoubleTap: (pokemonDetails) => context
                 .read<FavouritesCubit>()
                 .toggleFavouriteState(pokemonDetails),
