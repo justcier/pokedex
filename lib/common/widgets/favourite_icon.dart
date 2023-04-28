@@ -31,14 +31,11 @@ class FavouriteIcon extends StatelessWidget {
               child: AnimatedCrossFade(
                 duration: const Duration(milliseconds: 350),
                 firstChild: const Image(
-                  image: AssetImage("assets/Poké_Ball_icon.png"),
-                ),
+                    image: AssetImage("assets/pokeball_color_icon.png")),
                 secondChild: const Opacity(
                   opacity: Dimensions.sizeXS,
                   child: Image(
-                    image: AssetImage(
-                      "assets/Poké_Ball_icon.png",
-                    ),
+                    image: AssetImage("assets/pokeball_color_icon.png"),
                   ),
                 ),
                 crossFadeState: state.favouritesList.contains(pokemonDetails)

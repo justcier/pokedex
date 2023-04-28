@@ -25,7 +25,6 @@ class FavouritesPage extends StatelessWidget {
       ),
       body: BlocBuilder<FavouritesCubit, FavouritesState>(
         builder: (context, state) {
-          print(state.favouritesList);
           return FavouritesListWidget(
             favouritesList: state.favouritesList,
             onDoubleTap: (pokemonDetails) => context

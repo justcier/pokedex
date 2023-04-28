@@ -70,8 +70,8 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
     );
   }
 
-  BorderRadius get _borderRadius =>
-      const BorderRadius.vertical(bottom: Radius.circular(Dimensions.sizeXXXL));
+  BorderRadius get _borderRadius => const BorderRadius.vertical(
+      bottom: Radius.circular(Dimensions.sizeXXXXL));
 
   String _showPokemonId(int pokemonId) {
     return '#${'O' * (3 - pokemonId.toString().length)}$pokemonId';

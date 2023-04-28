@@ -44,12 +44,15 @@ class _HomePageState extends State<HomePage> {
             label: Strings.bottomNavigationBarOption1,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
+            // icon: Icon(Icons.favorite_border),
+            icon: ImageIcon(
+              AssetImage('assets/pokeball_icon.png'),
+            ),
             label: Strings.bottomNavigationBarOption2,
           ),
         ],
-        selectedItemColor: ColorTokens.darkBackgroundColor,
-        unselectedItemColor: ColorTokens.white,
+        selectedItemColor: ColorTokens.white,
+        unselectedItemColor: ColorTokens.darkBackgroundColor,
         onTap: _onItemTapped,
       ),
     );

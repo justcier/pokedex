@@ -28,7 +28,6 @@ class FavouritesCubit extends Cubit<FavouritesState> {
         ),
       );
     }
-    print(state.favouritesList.length);
   }
 
   Future<void> _getFavourites() async {
