@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_cubit.dart';
 import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_state.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
-import 'package:pokedex_rest/style/color_tokens.dart';
+import 'package:pokedex_rest/style/dimensions.dart';
 
 class FavouriteIcon extends StatelessWidget {
   final PokemonDetails pokemonDetails;
@@ -26,19 +26,25 @@ class FavouriteIcon extends StatelessWidget {
           child: Container(
             alignment: Alignment.topLeft,
             padding: padding,
-            child: AnimatedCrossFade(
-              duration: const Duration(milliseconds: 350),
-              firstChild: const Icon(
-                Icons.favorite,
-                color: ColorTokens.primaryColor,
+            child: SizedBox(
+              height: Dimensions.sizeXXL,
+              child: AnimatedCrossFade(
+                duration: const Duration(milliseconds: 350),
+                firstChild: const Image(
+                  image: AssetImage("assets/Poké_Ball_icon.png"),
+                ),
+                secondChild: const Opacity(
+                  opacity: Dimensions.sizeXS,
+                  child: Image(
+                    image: AssetImage(
+                      "assets/Poké_Ball_icon.png",
+                    ),
+                  ),
+                ),
+                crossFadeState: state.favouritesList.contains(pokemonDetails)
+                    ? CrossFadeState.showFirst
+                    : CrossFadeState.showSecond,
               ),
-              secondChild: const Icon(
-                Icons.favorite_border,
-                color: ColorTokens.darkBackgroundColor,
-              ),
-              crossFadeState: state.favouritesList.contains(pokemonDetails)
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
             ),
           ),
         );
