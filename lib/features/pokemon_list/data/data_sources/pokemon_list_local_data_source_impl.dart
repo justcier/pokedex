@@ -35,4 +35,14 @@ class PokemonListLocalDataSourceImpl implements PokemonListLocalDataSource {
       return [];
     }
   }
+
+  @override
+  Future<void> removeFromFavourites(PokemonDetails pokemonDetails) async {
+    final List<PokemonDetails> storedFavourites = getStoredFavourites();
+
+    if (storedFavourites.contains(pokemonDetails)) {
+      storedFavourites.remove(pokemonDetails);
+      await storeFavourites(storedFavourites);
+    }
+  }
 }

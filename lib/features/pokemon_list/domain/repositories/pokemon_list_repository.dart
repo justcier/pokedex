@@ -5,5 +5,7 @@ abstract class PokemonListRepository {
 
   Future<void> storeFavourites(List<PokemonDetails> pokemonDetailsList);
 
+  Future<void> removeFromFavourites(PokemonDetails pokemonDetails);
+
   List<PokemonDetails> getStoredFavourites();
 }

@@ -23,22 +23,24 @@ import 'package:pokedex_rest/features/pokemon_list/data/repositories/pokemon_lis
 import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_list_repository.dart'
     as _i14;
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart'
-    as _i17;
-import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_stored_favourites_use_case.dart'
     as _i18;
-import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/store_favourites_use_case.dart'
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_stored_favourites_use_case.dart'
+    as _i19;
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/remove_from_favourites_use_case.dart'
     as _i16;
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/store_favourites_use_case.dart'
+    as _i17;
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart'
     as _i8;
 import 'package:pokedex_rest/services/color_service/color_service.dart' as _i4;
 import 'package:pokedex_rest/services/injection_service/injection_registration_service.dart'
-    as _i19;
+    as _i20;
 import 'package:pokedex_rest/services/network_service/network_service.dart'
     as _i6;
 import 'package:pokedex_rest/services/network_service/network_service_impl.dart'
     as _i7;
 import 'package:pokedex_rest/services/registration_service/registration_service.dart'
-    as _i20;
+    as _i21;
 import 'package:shared_preferences/shared_preferences.dart'
     as _i11; // ignore_for_file: unnecessary_lambdas
 
@@ -75,19 +77,22 @@ _i1.GetIt $initGetIt(
             pokemonListLocalDataSource:
                 await get.getAsync<_i12.PokemonListLocalDataSource>(),
           ));
-  gh.factoryAsync<_i16.StoreFavouritesUseCase>(() async =>
-      _i16.StoreFavouritesUseCase(
+  gh.factoryAsync<_i16.RemoveFromFavouritesUseCase>(() async =>
+      _i16.RemoveFromFavouritesUseCase(
           await get.getAsync<_i14.PokemonListRepository>()));
-  gh.factoryAsync<_i17.GetPokemonDetailsUseCase>(() async =>
-      _i17.GetPokemonDetailsUseCase(
+  gh.factoryAsync<_i17.StoreFavouritesUseCase>(() async =>
+      _i17.StoreFavouritesUseCase(
           await get.getAsync<_i14.PokemonListRepository>()));
-  gh.factoryAsync<_i18.GetStoredFavouritesUseCase>(() async =>
-      _i18.GetStoredFavouritesUseCase(
+  gh.factoryAsync<_i18.GetPokemonDetailsUseCase>(() async =>
+      _i18.GetPokemonDetailsUseCase(
+          await get.getAsync<_i14.PokemonListRepository>()));
+  gh.factoryAsync<_i19.GetStoredFavouritesUseCase>(() async =>
+      _i19.GetStoredFavouritesUseCase(
           await get.getAsync<_i14.PokemonListRepository>()));
   return get;
 }
 
 class _$InjectionRegistrationService
-    extends _i19.InjectionRegistrationService {}
+    extends _i20.InjectionRegistrationService {}
 
-class _$RegisterService extends _i20.RegisterService {}
+class _$RegisterService extends _i21.RegisterService {}
