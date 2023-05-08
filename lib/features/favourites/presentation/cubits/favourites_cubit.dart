@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_state.dart';
@@ -9,7 +10,7 @@ import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 @lazySingleton
 class FavouritesCubit extends Cubit<FavouritesState> {
   FavouritesCubit() : super(FavouritesState.initial()) {
-    _getFavourites();
+    getFavourites();
   }
 
   Future<void> toggleFavouriteState(PokemonDetails pokemonDetails) async {
@@ -30,7 +31,8 @@ class FavouritesCubit extends Cubit<FavouritesState> {
     }
   }
 
-  Future<void> _getFavourites() async {
+  @visibleForTesting
+  Future<void> getFavourites() async {
     final List<PokemonDetails> storedFavourites =
         (await getIt.getAsync<GetStoredFavouritesUseCase>()).call();
 
