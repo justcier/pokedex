@@ -81,4 +81,24 @@ void main() {
       },
     );
   });
+
+  group('removeFromFavourites', () {
+    test(
+      'should correctly propagate call to local data source, delete item and '
+      'save new pokemonDetailsList on a successful call',
+      () async {
+        // Arrange
+        when(() => pokemonListRepositoryImpl.removeFromFavourites
+            .call(captureAny())).thenAnswer((_) async {});
+
+        // Act
+        await pokemonListLocalDataSource
+            .removeFromFavourites(tPokemonDetailsList.first);
+
+        // Assert
+        verify(() => pokemonListRepositoryImpl
+            .removeFromFavourites(tPokemonDetailsList.first)).called(1);
+      },
+    );
+  });
 }

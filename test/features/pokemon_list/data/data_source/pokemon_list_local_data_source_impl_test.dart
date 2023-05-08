@@ -79,5 +79,57 @@ void main() {
         },
       );
     });
+
+    group('removeFromFavourites', () {
+      test('should remove stored favourite if it is locally saved', () async {
+        // Arrange
+        when(() => sharedPreferences.getString(captureAny())).thenAnswer(
+            (_) => jsonEncode([tPokemonDetailsList.first.toJson()]));
+        when(() => sharedPreferences.setString(
+              captureAny(),
+              captureAny(),
+            )).thenAnswer((_) async => true);
+
+        // Act
+        await pokemonListLocalDataSourceImpl
+            .removeFromFavourites(tPokemonDetailsList.first);
+
+        // Assert
+        verify(() => sharedPreferences.getString(
+              SharedPrefsKeys.favouritesPokemon,
+            )).called(1);
+        verify(
+          () => sharedPreferences.setString(
+            SharedPrefsKeys.favouritesPokemon,
+            jsonEncode([]),
+          ),
+        ).called(1);
+      });
+
+      test(
+        'should not save anything if locally stored list is empty or '
+        'saved list does not contains past pokemonDetails',
+        () async {
+          // Arrange
+          when(() => sharedPreferences.getString(captureAny()))
+              .thenAnswer((_) => jsonEncode([]));
+
+          // Act
+          await pokemonListLocalDataSourceImpl
+              .removeFromFavourites(tPokemonDetailsList.first);
+
+          // Assert
+          verify(() => sharedPreferences.getString(
+                SharedPrefsKeys.favouritesPokemon,
+              )).called(1);
+          verifyNever(
+            () => sharedPreferences.setString(
+              captureAny(),
+              captureAny(),
+            ),
+          );
+        },
+      );
+    });
   });
 }
