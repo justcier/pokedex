@@ -3,6 +3,7 @@ import 'package:pokedex_rest/features/pokemon_list/data/data_sources/pokemon_lis
 import 'package:pokedex_rest/features/pokemon_list/data/data_sources/pokemon_list_remote_data_source.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/repositories/pokemon_list_repository.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_stored_favourites_use_case.dart';
+import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/remove_from_favourites_use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/store_favourites_use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart';
 import 'package:pokedex_rest/services/network_service/network_service.dart';
@@ -27,6 +28,9 @@ class MockStoreFavouritesUseCase extends Mock
 
 class MockGetStoredFavouritesUseCase extends Mock
     implements GetStoredFavouritesUseCase {}
+
+class MockRemoveFromFavouritesUseCase extends Mock
+    implements RemoveFromFavouritesUseCase {}
 
 // Services
 class MockNetworkService extends Mock implements NetworkService {}
