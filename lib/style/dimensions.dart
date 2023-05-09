@@ -1,6 +1,5 @@
 class Dimensions {
   static const double size0 = 0.0;
-  static const double sizeXS = 0.2;
   static const double sizeS = 2.0;
   static const double sizeM = 6.0;
   static const double sizeML = 8.0;

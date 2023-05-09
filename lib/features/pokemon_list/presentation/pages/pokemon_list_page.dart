@@ -65,9 +65,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
               pokemonDetailsList: pokemonDetailsList,
               gridViewScrollController: _scrollController,
               isLoading: state.isLoading,
-              onDoubleTap: (pokemonDetails) => context
-                  .read<FavouritesCubit>()
-                  .toggleFavouriteState(pokemonDetails),
+              onDoubleTap: context.read<FavouritesCubit>().toggleFavouriteState,
             );
           },
         ),

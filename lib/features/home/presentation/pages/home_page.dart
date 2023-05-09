@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:pokedex_rest/common/asset_paths.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
 import 'package:pokedex_rest/features/favourites/presentation/pages/favourites_page.dart';
@@ -44,9 +45,8 @@ class _HomePageState extends State<HomePage> {
             label: Strings.bottomNavigationBarOption1,
           ),
           BottomNavigationBarItem(
-            // icon: Icon(Icons.favorite_border),
             icon: ImageIcon(
-              AssetImage('assets/pokeball_icon.png'),
+              AssetImage(AssetPaths.pokeballIcon),
             ),
             label: Strings.bottomNavigationBarOption2,
           ),

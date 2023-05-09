@@ -45,9 +45,7 @@ class PokemonListWidget extends StatelessWidget {
             PokemonDetailsRoute(pokemonDetails: pokemonDetails),
           ),
           onDoubleTap: () => onDoubleTap(pokemonDetails),
-          child: PokemonTileContent(
-            pokemonDetails: pokemonDetails,
-          ),
+          child: PokemonTileContent(pokemonDetails: pokemonDetails),
         );
       },
     );

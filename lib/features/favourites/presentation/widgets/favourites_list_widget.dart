@@ -5,11 +5,9 @@ import 'package:pokedex_rest/style/dimensions.dart';
 
 class FavouritesListWidget extends StatelessWidget {
   final List<PokemonDetails> favouritesList;
-  final Function(PokemonDetails) onDoubleTap;
 
   const FavouritesListWidget({
     required this.favouritesList,
-    required this.onDoubleTap,
     Key? key,
   }) : super(key: key);
 

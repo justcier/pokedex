@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokedex_rest/common/asset_paths.dart';
 import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_cubit.dart';
 import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_state.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
@@ -31,11 +32,11 @@ class FavouriteIcon extends StatelessWidget {
               child: AnimatedCrossFade(
                 duration: const Duration(milliseconds: 350),
                 firstChild: const Image(
-                    image: AssetImage("assets/pokeball_color_icon.png")),
+                    image: AssetImage(AssetPaths.pokeballIconColor)),
                 secondChild: const Opacity(
-                  opacity: Dimensions.sizeXS,
+                  opacity: 0.2,
                   child: Image(
-                    image: AssetImage("assets/pokeball_color_icon.png"),
+                    image: AssetImage(AssetPaths.pokeballIconColor),
                   ),
                 ),
                 crossFadeState: state.favouritesList.contains(pokemonDetails)

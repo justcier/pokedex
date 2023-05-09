@@ -25,12 +25,7 @@ class FavouritesPage extends StatelessWidget {
       ),
       body: BlocBuilder<FavouritesCubit, FavouritesState>(
         builder: (context, state) {
-          return FavouritesListWidget(
-            favouritesList: state.favouritesList,
-            onDoubleTap: (pokemonDetails) => context
-                .read<FavouritesCubit>()
-                .toggleFavouriteState(pokemonDetails),
-          );
+          return FavouritesListWidget(favouritesList: state.favouritesList);
         },
       ),
     );

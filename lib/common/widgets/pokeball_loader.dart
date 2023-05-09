@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gif/flutter_gif.dart';
+import 'package:pokedex_rest/common/asset_paths.dart';
 
 class PokeballLoader extends StatefulWidget {
   const PokeballLoader({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _PokeballLoaderState extends State<PokeballLoader>
   Widget build(BuildContext context) {
     return GifImage(
       controller: controller,
-      image: const AssetImage("assets/pokeball.gif"),
+      image: const AssetImage(AssetPaths.pokeballGIF),
     );
   }
 }

@@ -49,8 +49,9 @@ class FavouritesTileContent extends StatelessWidget {
                 PokemonDetailsTypesRow(types: pokemonDetails.types),
                 const SizedBox(height: Dimensions.sizeL),
                 PokemonDetailsBodyAttributesRow(
-                    weight: pokemonDetails.weight,
-                    height: pokemonDetails.height)
+                  weight: pokemonDetails.weight,
+                  height: pokemonDetails.height,
+                )
               ],
             ),
           ),
