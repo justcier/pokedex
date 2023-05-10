@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_rest/common/widgets/pokemon_number.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
 import 'package:pokedex_rest/common/widgets/pokemon_hero.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
@@ -48,8 +49,8 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
             Strings.appBarHomePageTitle,
             style: TextStyleTokens.mainTitleWhite,
           ),
-          Text(
-            _showPokemonId(widget.pokemonDetails.id),
+          PokemonNumber(
+            id: widget.pokemonDetails.id,
             style: TextStyleTokens.mainTitleWhite,
           ),
         ],
@@ -72,8 +73,4 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
 
   BorderRadius get _borderRadius => const BorderRadius.vertical(
       bottom: Radius.circular(Dimensions.sizeXXXXL));
-
-  String _showPokemonId(int pokemonId) {
-    return '#${'O' * (3 - pokemonId.toString().length)}$pokemonId';
-  }
 }
