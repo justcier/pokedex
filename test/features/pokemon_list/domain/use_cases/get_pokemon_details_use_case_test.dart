@@ -16,7 +16,7 @@ void main() {
       'should correctly propagate the call to repository and return pokemon details on a successful call',
       () async {
         // Arrange
-        when(() => pokemonRepository.getPokemonDetails(tId))
+        when(() => pokemonRepository.getPokemonDetails(captureAny()))
             .thenAnswer((_) async => tPokemonDetails);
 
         // Act

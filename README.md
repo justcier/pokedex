@@ -5,13 +5,12 @@ application which allows users to search for pokemon.
 
 ## Project presentation
 ### App screens
-| Home page  | Pokemon Details Page |
-| ------------- | ------------- |
-|<img width="237" alt="image" src="https://user-images.githubusercontent.com/71925819/228244394-0fb637bd-8522-4c32-8673-cede325e12e8.png"> | <img width="239" alt="Screenshot 2023-04-11 at 13 31 14" src="https://user-images.githubusercontent.com/71925819/231162927-b53b426b-7925-4d18-90f6-9e17e0402579.png">
+| Home page  | Pokemon Details Page | Favourites Page |
+| ------------- | ------------- | ------------- |
+| <img width="273" alt="Screenshot 2023-05-09 at 12 40 59" src="https://github.com/justcier/pokedex/assets/71925819/ff7faf6b-17ba-40a1-8643-1e0760edfaa6">|<img width="274" alt="Screenshot 2023-05-09 at 12 41 14" src="https://github.com/justcier/pokedex/assets/71925819/21fc624a-91c1-4bf4-b119-d80f95a8f625">|<img width="276" alt="Screenshot 2023-05-09 at 12 40 40" src="https://github.com/justcier/pokedex/assets/71925819/afb4c94c-9df5-4d74-9e76-eab6f626735e">|
 
 ### App showcase
-https://user-images.githubusercontent.com/71925819/231162760-e69651c3-0426-469d-81f9-e106df9b9ae2.mov
-
+https://github.com/justcier/pokedex/assets/71925819/5763a9ba-4412-4848-82fb-1590ed186e90
 
 
 ## Technology stack and main dependencies
@@ -21,6 +20,7 @@ https://user-images.githubusercontent.com/71925819/231162760-e69651c3-0426-469d-
 | State management | flutter_bloc |
 | Dependency injection | get_it injectable |
 | Navigation  | auto_route |
+| Local storage | shared_preferences |
 
 
 ## App architecture and folder structure

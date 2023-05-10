@@ -1,15 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokedex_rest/common/asset_paths.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
-import 'package:pokedex_rest/common/widgets/pokeball_loader.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
-import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
-import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart';
-import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
-import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
-import 'package:pokedex_rest/services/injection_service/injection_service.dart';
+import 'package:pokedex_rest/features/favourites/presentation/pages/favourites_page.dart';
+import 'package:pokedex_rest/features/pokemon_list/presentation/pages/pokemon_list_page.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
+import 'package:pokedex_rest/style/dimensions.dart';
+import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
@@ -20,59 +18,49 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final PokemonListCubit _cubit = getIt<PokemonListCubit>();
-  final ScrollController _scrollController = ScrollController();
+  int selectedIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _cubit.getPokemonDetailsList();
-
-    _scrollController.addListener(_fetchMoreDataListener);
-  }
-
-  @override
-  void dispose() {
-    _cubit.close();
-    _scrollController.removeListener(_fetchMoreDataListener);
-    _scrollController.dispose();
-    super.dispose();
-  }
+  final screens = [
+    const PokemonListPage(),
+    const FavouritesPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      appBar: AppBar(
-        title: const Text(Strings.appBarHomePageTitle),
-        backgroundColor: ColorTokens.secondaryColor,
+      // Thanks to IndexedStack PokemonListPage isn't fetching data every time.
+      body: IndexedStack(
+        index: selectedIndex,
+        children: screens,
       ),
-      body: Center(
-        child: BlocBuilder<PokemonListCubit, PokemonListState>(
-          bloc: _cubit,
-          builder: (_, PokemonListState state) {
-            final List<PokemonDetails>? pokemonDetailsList =
-                state.pokemonDetailsList;
-
-            if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
-              return const PokeballLoader();
-            } else if (pokemonDetailsList == null) {
-              return const SizedBox.shrink();
-            }
-
-            return PokemonListWidget(
-              pokemonDetailsList: pokemonDetailsList,
-              gridViewScrollController: _scrollController,
-              isLoading: state.isLoading,
-            );
-          },
-        ),
+      navigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        backgroundColor: ColorTokens.secondaryColor,
+        selectedLabelStyle: TextStyleTokens.mainDescription,
+        unselectedLabelStyle: TextStyleTokens.mainDescription
+            .copyWith(fontSize: Dimensions.sizeML),
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: Strings.bottomNavigationBarOption1,
+          ),
+          BottomNavigationBarItem(
+            icon: ImageIcon(
+              AssetImage(AssetPaths.pokeballIcon),
+            ),
+            label: Strings.bottomNavigationBarOption2,
+          ),
+        ],
+        selectedItemColor: ColorTokens.white,
+        unselectedItemColor: ColorTokens.darkBackgroundColor,
+        onTap: _onItemTapped,
       ),
     );
   }
 
-  void _fetchMoreDataListener() {
-    if (_scrollController.position.extentAfter == 0) {
-      _cubit.fetchNextPage();
-    }
+  void _onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
   }
 }

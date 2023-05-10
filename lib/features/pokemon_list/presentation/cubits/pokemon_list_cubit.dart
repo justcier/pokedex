@@ -18,7 +18,8 @@ class PokemonListCubit extends Cubit<PokemonListState> {
     final pageEndIndex = _defaultPageSize * page + 1;
 
     for (int i = pageStartIndex; i < pageEndIndex; i++) {
-      final pokemonDetailsFuture = getIt<GetPokemonDetailsUseCase>().call('$i');
+      final pokemonDetailsFuture =
+          (await getIt.getAsync<GetPokemonDetailsUseCase>()).call('$i');
       pokemonDetailsFutureList.add(pokemonDetailsFuture);
     }
 

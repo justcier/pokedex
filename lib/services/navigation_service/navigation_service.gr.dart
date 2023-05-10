@@ -30,6 +30,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    FavouritesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FavouritesPage(),
+      );
+    },
   };
 }
 
@@ -83,4 +89,18 @@ class PokemonDetailsRouteArgs {
   String toString() {
     return 'PokemonDetailsRouteArgs{pokemonDetails: $pokemonDetails, key: $key}';
   }
+}
+
+/// generated route for
+/// [FavouritesPage]
+class FavouritesRoute extends PageRouteInfo<void> {
+  const FavouritesRoute({List<PageRouteInfo>? children})
+      : super(
+          FavouritesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FavouritesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

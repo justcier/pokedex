@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 import 'package:pokedex_rest/services/navigation_service/navigation_service.dart';
 
+import 'global_providers.dart';
+
 void main() {
   configureInjector();
   runApp(MyApp());
@@ -14,8 +16,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _appRouter.config(),
+    return GlobalProviders(
+      child: MaterialApp.router(
+        routerConfig: _appRouter.config(),
+      ),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:pokedex_rest/services/color_service/color_service.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
 import 'package:pokedex_rest/style/dimensions.dart';
+import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 class PokemonDetailsAppBar extends StatefulWidget {
   final PokemonDetails pokemonDetails;
@@ -43,8 +44,14 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(Strings.appBarHomePageTitle),
-          Text(_showPokemonId(widget.pokemonDetails.id)),
+          Text(
+            Strings.appBarHomePageTitle,
+            style: TextStyleTokens.mainTitleWhite,
+          ),
+          Text(
+            _showPokemonId(widget.pokemonDetails.id),
+            style: TextStyleTokens.mainTitleWhite,
+          ),
         ],
       ),
       flexibleSpace: AnimatedContainer(
@@ -63,8 +70,8 @@ class _PokemonDetailsAppBarState extends State<PokemonDetailsAppBar> {
     );
   }
 
-  BorderRadius get _borderRadius =>
-      const BorderRadius.vertical(bottom: Radius.circular(Dimensions.sizeXXXL));
+  BorderRadius get _borderRadius => const BorderRadius.vertical(
+      bottom: Radius.circular(Dimensions.sizeXXXXL));
 
   String _showPokemonId(int pokemonId) {
     return '#${'O' * (3 - pokemonId.toString().length)}$pokemonId';

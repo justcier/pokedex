@@ -10,11 +10,13 @@ class PokemonListWidget extends StatelessWidget {
   final List<PokemonDetails> pokemonDetailsList;
   final ScrollController gridViewScrollController;
   final bool isLoading;
+  final Function(PokemonDetails) onDoubleTap;
 
   const PokemonListWidget({
     required this.pokemonDetailsList,
     required this.gridViewScrollController,
     required this.isLoading,
+    required this.onDoubleTap,
     Key? key,
   }) : super(key: key);
 
@@ -42,6 +44,7 @@ class PokemonListWidget extends StatelessWidget {
           onTap: () => context.router.push(
             PokemonDetailsRoute(pokemonDetails: pokemonDetails),
           ),
+          onDoubleTap: () => onDoubleTap(pokemonDetails),
           child: PokemonTileContent(pokemonDetails: pokemonDetails),
         );
       },

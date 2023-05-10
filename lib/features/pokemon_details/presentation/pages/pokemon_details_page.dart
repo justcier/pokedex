@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
+import 'package:pokedex_rest/common/widgets/favourite_icon.dart';
 import 'package:pokedex_rest/core/extensions/build_context_extensions.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_app_bar.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/widgets/pokemon_details_body_attributes_row.dart';
@@ -32,9 +33,18 @@ class PokemonDetailsPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(Dimensions.sizeXXL),
-              child: Text(
-                pokemonDetails.name,
-                style: TextStyleTokens.mainTitleBig,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    pokemonDetails.name,
+                    style: TextStyleTokens.mainTitleBig,
+                  ),
+                  const SizedBox(width: Dimensions.sizeM),
+                  FavouriteIcon(
+                    pokemonDetails: pokemonDetails,
+                  ),
+                ],
               ),
             ),
             PokemonDetailsTypesRow(types: pokemonDetails.types),
