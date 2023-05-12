@@ -18,7 +18,10 @@ class PokemonDetailsCubit extends Cubit<PokemonDetailsState> {
     emit(
       state.copyWith(
         status: PokemonDetailsStateStatus.loaded,
-        flavorText: pokemonSpecies.flavorTextEntries.first.flavorText,
+        flavorText: pokemonSpecies.flavorTextEntries
+            .where((el) => el.language.name == 'en')
+            .first
+            .flavorText,
       ),
     );
   }

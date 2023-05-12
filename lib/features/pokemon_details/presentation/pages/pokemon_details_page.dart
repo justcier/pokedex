@@ -77,6 +77,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                 weight: widget.pokemonDetails.weight,
                 height: widget.pokemonDetails.height,
               ),
+              const SizedBox(height: Dimensions.sizeXL),
               BlocBuilder<PokemonDetailsCubit, PokemonDetailsState>(
                 bloc: _pokemonDetailsCubit,
                 builder: (_, PokemonDetailsState state) {
@@ -86,10 +87,18 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                     return const SizedBox.shrink();
                   }
 
-                  return Text(flavorText);
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Dimensions.sizeL,
+                    ),
+                    child: Text(
+                      flavorText,
+                      style: TextStyleTokens.mainTitle,
+                    ),
+                  );
                 },
               ),
-              const SizedBox(height: Dimensions.sizeXXL),
+              const SizedBox(height: Dimensions.sizeXL),
               PokemonDetailsStatsContainer(
                 stats: widget.pokemonDetails.stats,
                 baseExperience: widget.pokemonDetails.baseExperience,
