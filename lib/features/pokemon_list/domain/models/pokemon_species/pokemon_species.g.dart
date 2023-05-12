@@ -8,13 +8,12 @@ part of 'pokemon_species.dart';
 
 _$_PokemonSpecies _$$_PokemonSpeciesFromJson(Map<String, dynamic> json) =>
     _$_PokemonSpecies(
-      id: json['id'] as int,
-      flavorText:
-          FlavorText.fromJson(json['flavor_text'] as Map<String, dynamic>),
+      flavorTextEntries: (json['flavor_text_entries'] as List<dynamic>)
+          .map((e) => FlavorTextEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_PokemonSpeciesToJson(_$_PokemonSpecies instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'flavor_text': instance.flavorText,
+      'flavor_text_entries': instance.flavorTextEntries,
     };

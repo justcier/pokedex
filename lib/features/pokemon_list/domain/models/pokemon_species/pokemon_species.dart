@@ -9,8 +9,7 @@ class PokemonSpecies with _$PokemonSpecies {
   const PokemonSpecies._();
 
   const factory PokemonSpecies({
-    required int id,
-    required FlavorText flavorText,
+    required List<FlavorTextEntry> flavorTextEntries,
   }) = _PokemonSpecies;
 
   factory PokemonSpecies.fromJson(Map<String, dynamic> json) =>

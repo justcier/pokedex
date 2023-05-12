@@ -20,8 +20,8 @@ PokemonSpecies _$PokemonSpeciesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PokemonSpecies {
-  int get id => throw _privateConstructorUsedError;
-  FlavorText get flavorText => throw _privateConstructorUsedError;
+  List<FlavorTextEntry> get flavorTextEntries =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +35,7 @@ abstract class $PokemonSpeciesCopyWith<$Res> {
           PokemonSpecies value, $Res Function(PokemonSpecies) then) =
       _$PokemonSpeciesCopyWithImpl<$Res, PokemonSpecies>;
   @useResult
-  $Res call({int id, FlavorText flavorText});
-
-  $FlavorTextCopyWith<$Res> get flavorText;
+  $Res call({List<FlavorTextEntry> flavorTextEntries});
 }
 
 /// @nodoc
@@ -53,27 +51,14 @@ class _$PokemonSpeciesCopyWithImpl<$Res, $Val extends PokemonSpecies>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? flavorText = null,
+    Object? flavorTextEntries = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      flavorText: null == flavorText
-          ? _value.flavorText
-          : flavorText // ignore: cast_nullable_to_non_nullable
-              as FlavorText,
+      flavorTextEntries: null == flavorTextEntries
+          ? _value.flavorTextEntries
+          : flavorTextEntries // ignore: cast_nullable_to_non_nullable
+              as List<FlavorTextEntry>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FlavorTextCopyWith<$Res> get flavorText {
-    return $FlavorTextCopyWith<$Res>(_value.flavorText, (value) {
-      return _then(_value.copyWith(flavorText: value) as $Val);
-    });
   }
 }
 
@@ -85,10 +70,7 @@ abstract class _$$_PokemonSpeciesCopyWith<$Res>
       __$$_PokemonSpeciesCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, FlavorText flavorText});
-
-  @override
-  $FlavorTextCopyWith<$Res> get flavorText;
+  $Res call({List<FlavorTextEntry> flavorTextEntries});
 }
 
 /// @nodoc
@@ -102,18 +84,13 @@ class __$$_PokemonSpeciesCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? flavorText = null,
+    Object? flavorTextEntries = null,
   }) {
     return _then(_$_PokemonSpecies(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      flavorText: null == flavorText
-          ? _value.flavorText
-          : flavorText // ignore: cast_nullable_to_non_nullable
-              as FlavorText,
+      flavorTextEntries: null == flavorTextEntries
+          ? _value._flavorTextEntries
+          : flavorTextEntries // ignore: cast_nullable_to_non_nullable
+              as List<FlavorTextEntry>,
     ));
   }
 }
@@ -121,20 +98,26 @@ class __$$_PokemonSpeciesCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PokemonSpecies extends _PokemonSpecies {
-  const _$_PokemonSpecies({required this.id, required this.flavorText})
-      : super._();
+  const _$_PokemonSpecies(
+      {required final List<FlavorTextEntry> flavorTextEntries})
+      : _flavorTextEntries = flavorTextEntries,
+        super._();
 
   factory _$_PokemonSpecies.fromJson(Map<String, dynamic> json) =>
       _$$_PokemonSpeciesFromJson(json);
 
+  final List<FlavorTextEntry> _flavorTextEntries;
   @override
-  final int id;
-  @override
-  final FlavorText flavorText;
+  List<FlavorTextEntry> get flavorTextEntries {
+    if (_flavorTextEntries is EqualUnmodifiableListView)
+      return _flavorTextEntries;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_flavorTextEntries);
+  }
 
   @override
   String toString() {
-    return 'PokemonSpecies(id: $id, flavorText: $flavorText)';
+    return 'PokemonSpecies(flavorTextEntries: $flavorTextEntries)';
   }
 
   @override
@@ -142,14 +125,14 @@ class _$_PokemonSpecies extends _PokemonSpecies {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PokemonSpecies &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.flavorText, flavorText) ||
-                other.flavorText == flavorText));
+            const DeepCollectionEquality()
+                .equals(other._flavorTextEntries, _flavorTextEntries));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, flavorText);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_flavorTextEntries));
 
   @JsonKey(ignore: true)
   @override
@@ -167,17 +150,15 @@ class _$_PokemonSpecies extends _PokemonSpecies {
 
 abstract class _PokemonSpecies extends PokemonSpecies {
   const factory _PokemonSpecies(
-      {required final int id,
-      required final FlavorText flavorText}) = _$_PokemonSpecies;
+          {required final List<FlavorTextEntry> flavorTextEntries}) =
+      _$_PokemonSpecies;
   const _PokemonSpecies._() : super._();
 
   factory _PokemonSpecies.fromJson(Map<String, dynamic> json) =
       _$_PokemonSpecies.fromJson;
 
   @override
-  int get id;
-  @override
-  FlavorText get flavorText;
+  List<FlavorTextEntry> get flavorTextEntries;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonSpeciesCopyWith<_$_PokemonSpecies> get copyWith =>
