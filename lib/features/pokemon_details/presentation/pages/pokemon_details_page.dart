@@ -33,7 +33,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
 
   @override
   void initState() {
-    _pokemonDetailsCubit.getPokemonSpecies(widget.pokemonDetails.id);
+    _pokemonDetailsCubit.getPokemonSpecies(widget.pokemonDetails.id.toString());
     super.initState();
   }
 

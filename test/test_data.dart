@@ -15,4 +15,6 @@ final PokemonSpecies tPokemonSpecies = PokemonSpecies.fromJson(
   jsonDecode(fixture(Fixtures.pokemonSpecies)),
 );
 
+final String tFlavorText = tPokemonSpecies.flavorTextEntries.first.flavorText;
+
 final List<PokemonDetails> tPokemonDetailsList = [tPokemonDetails];

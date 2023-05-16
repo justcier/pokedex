@@ -44,6 +44,26 @@ void main() {
     );
   });
 
+  group('getPokemonSpecies', () {
+    test(
+      'should correctly propagate the call to remote data source and return pokemon species on a successful call',
+      () async {
+        // Arrange
+        when(
+          () => pokemonListRemoteDataSource.getPokemonSpecies(captureAny()),
+        ).thenAnswer((_) async => tPokemonSpecies);
+
+        // Act
+        final result = await pokemonListRepositoryImpl.getPokemonSpecies(tId);
+
+        // Assert
+        verify(() => pokemonListRemoteDataSource.getPokemonSpecies(tId))
+            .called(1);
+        expect(result, tPokemonSpecies);
+      },
+    );
+  });
+
   group('storeFavourites', () {
     test(
       'should correctly propagate pokemonDetails to local data source on a successful call',
