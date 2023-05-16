@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_rest/common/widgets/common_scaffold.dart';
 import 'package:pokedex_rest/common/widgets/favourite_icon.dart';
+import 'package:pokedex_rest/common/widgets/pokeball_loader.dart';
 import 'package:pokedex_rest/core/extensions/build_context_extensions.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/cubit/pokemon_details_cubit.dart';
 import 'package:pokedex_rest/features/pokemon_details/presentation/cubit/pokemon_details_state.dart';
@@ -84,7 +85,10 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                   final String? flavorText = state.flavorText;
 
                   if (state.isLoading || flavorText == null) {
-                    return const SizedBox.shrink();
+                    return const SizedBox(
+                      height: Dimensions.sizeXXXXXL,
+                      child: PokeballLoader(),
+                    );
                   }
 
                   return Padding(
