@@ -7,7 +7,7 @@ application which allows users to search for pokemon.
 ### App screens
 | Home page  | Pokemon Details Page | Favourites Page |
 | ------------- | ------------- | ------------- |
-| <img width="273" alt="Screenshot 2023-05-09 at 12 40 59" src="https://github.com/justcier/pokedex/assets/71925819/ff7faf6b-17ba-40a1-8643-1e0760edfaa6">|<img width="274" alt="Screenshot 2023-05-09 at 12 41 14" src="https://github.com/justcier/pokedex/assets/71925819/21fc624a-91c1-4bf4-b119-d80f95a8f625">|<img width="276" alt="Screenshot 2023-05-09 at 12 40 40" src="https://github.com/justcier/pokedex/assets/71925819/afb4c94c-9df5-4d74-9e76-eab6f626735e">|
+| <img width="272" alt="image" src="https://github.com/justcier/pokedex/assets/71925819/b15cf729-2855-4628-9a4d-6513c8e3faab">|<img width="272" alt="image" src="https://github.com/justcier/pokedex/assets/71925819/299e7ecc-88bc-4146-968f-fbc79aadbf45">|<img width="276" alt="Screenshot 2023-05-09 at 12 40 40" src="https://github.com/justcier/pokedex/assets/71925819/afb4c94c-9df5-4d74-9e76-eab6f626735e">|
 
 ### App showcase
 https://github.com/justcier/pokedex/assets/71925819/5763a9ba-4412-4848-82fb-1590ed186e90
