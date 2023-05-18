@@ -42,7 +42,7 @@ void main() {
     );
 
     blocTest(
-      'should not emit anything if flavorTextEntry == null',
+      'should emit loaded status if flavorTextEntries is empty',
       setUp: () => when(() => getPokemonSpeciesUseCase.call(captureAny()))
           .thenAnswer(
               (_) async => tPokemonSpecies.copyWith(flavorTextEntries: [])),

@@ -13,12 +13,12 @@ class PokemonNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      _showPokemonId(id),
+      _parsePokemonId(id),
       style: style,
     );
   }
 
-  String _showPokemonId(int pokemonId) {
+  String _parsePokemonId(int pokemonId) {
     return '#${'O' * (3 - pokemonId.toString().length)}$pokemonId';
   }
 }

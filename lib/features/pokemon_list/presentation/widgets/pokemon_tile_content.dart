@@ -46,7 +46,7 @@ class PokemonTileContent extends StatelessWidget {
             ],
           ),
         ),
-        Container(
+        Padding(
           padding: const EdgeInsets.only(
             left: Dimensions.sizeL,
             right: Dimensions.sizeXXL,
