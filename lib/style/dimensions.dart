@@ -9,4 +9,5 @@ class Dimensions {
   static const double sizeXXL = 22.0;
   static const double sizeXXXL = 30.0;
   static const double sizeXXXXL = 40.0;
+  static const double sizeXXXXXL = 80.0;
 }

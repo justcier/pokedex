@@ -24,25 +24,21 @@ class FavouriteIcon extends StatelessWidget {
           onTap: () => context
               .read<FavouritesCubit>()
               .toggleFavouriteState(pokemonDetails),
-          child: Container(
-            alignment: Alignment.topLeft,
-            padding: padding,
-            child: SizedBox(
-              height: Dimensions.sizeXXL,
-              child: AnimatedCrossFade(
-                duration: const Duration(milliseconds: 350),
-                firstChild: const Image(
-                    image: AssetImage(AssetPaths.pokeballIconColor)),
-                secondChild: const Opacity(
-                  opacity: 0.2,
-                  child: Image(
-                    image: AssetImage(AssetPaths.pokeballIconColor),
-                  ),
+          child: SizedBox(
+            height: Dimensions.sizeXXL,
+            child: AnimatedCrossFade(
+              duration: const Duration(milliseconds: 350),
+              firstChild:
+                  const Image(image: AssetImage(AssetPaths.pokeballIconColor)),
+              secondChild: const Opacity(
+                opacity: 0.2,
+                child: Image(
+                  image: AssetImage(AssetPaths.pokeballIconColor),
                 ),
-                crossFadeState: state.favouritesList.contains(pokemonDetails)
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
               ),
+              crossFadeState: state.favouritesList.contains(pokemonDetails)
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
             ),
           ),
         );

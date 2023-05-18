@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/common/widgets/favourite_icon.dart';
 import 'package:pokedex_rest/common/widgets/pokemon_hero.dart';
+import 'package:pokedex_rest/common/widgets/pokemon_number.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
 import 'package:pokedex_rest/style/dimensions.dart';
@@ -45,11 +46,24 @@ class PokemonTileContent extends StatelessWidget {
             ],
           ),
         ),
-        FavouriteIcon(
-          pokemonDetails: pokemonDetails,
-          padding: const EdgeInsets.symmetric(
-            vertical: Dimensions.sizeL,
-            horizontal: Dimensions.sizeXXL,
+        Padding(
+          padding: const EdgeInsets.only(
+            left: Dimensions.sizeL,
+            right: Dimensions.sizeXXL,
+            top: Dimensions.sizeML,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              FavouriteIcon(
+                pokemonDetails: pokemonDetails,
+              ),
+              PokemonNumber(
+                id: pokemonDetails.id,
+                style: TextStyleTokens.mainTitle
+                    .copyWith(fontSize: Dimensions.sizeL),
+              ),
+            ],
           ),
         ),
       ],
