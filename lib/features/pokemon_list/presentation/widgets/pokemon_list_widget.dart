@@ -8,13 +8,11 @@ import 'package:pokedex_rest/style/dimensions.dart';
 
 class PokemonListWidget extends StatelessWidget {
   final List<PokemonDetails> pokemonDetailsList;
-  final ScrollController gridViewScrollController;
   final bool isLoading;
   final Function(PokemonDetails) onDoubleTap;
 
   const PokemonListWidget({
     required this.pokemonDetailsList,
-    required this.gridViewScrollController,
     required this.isLoading,
     required this.onDoubleTap,
     Key? key,
@@ -24,9 +22,7 @@ class PokemonListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final itemCount = pokemonDetailsList.length;
 
-    return GridView.builder(
-      controller: gridViewScrollController,
-      padding: const EdgeInsets.all(Dimensions.sizeXL),
+    return SliverGrid.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: Dimensions.sizeXL,
