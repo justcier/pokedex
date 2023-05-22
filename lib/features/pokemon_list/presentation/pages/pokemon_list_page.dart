@@ -56,7 +56,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
               const PokemonListSliverAppBar(
                 pinned: true,
                 snap: false,
-                floating: false,
+                floating: true,
               ),
               PokemonListWidget(
                 pokemonDetailsList: pokemonDetailsList,

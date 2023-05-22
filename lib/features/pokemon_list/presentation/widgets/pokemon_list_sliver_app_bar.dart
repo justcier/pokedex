@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_rest/core/extensions/build_context_extensions.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
+import 'package:pokedex_rest/features/search/presentation/widgets/search_widget.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
 import 'package:pokedex_rest/style/text_style_tokens.dart';
 
@@ -21,14 +23,22 @@ class PokemonListSliverAppBar extends StatelessWidget {
       pinned: pinned,
       snap: snap,
       floating: floating,
-      expandedHeight: 160.0,
+      expandedHeight: (context.screenHeight / 7),
       backgroundColor: ColorTokens.secondaryColor,
-      // title: Text(Strings.appBarHomePageTitle),
       flexibleSpace: FlexibleSpaceBar(
-        title: Text(
-          Strings.appBarHomePageTitle,
-          style: TextStyleTokens.mainTitleWhite,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Flexible(
+              child: Text(
+                Strings.appBarHomePageTitle,
+                style: TextStyleTokens.mainTitleWhite,
+              ),
+            ),
+            const Flexible(child: SearchWidget()),
+          ],
         ),
+        centerTitle: true,
       ),
     );
   }
