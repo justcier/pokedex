@@ -25,8 +25,6 @@ class PokemonListWidget extends StatelessWidget {
     return SliverGrid.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: Dimensions.sizeXL,
-        crossAxisSpacing: Dimensions.sizeXL,
       ),
       itemCount: isLoading ? itemCount + 1 : itemCount,
       itemBuilder: (_, index) {
@@ -41,7 +39,13 @@ class PokemonListWidget extends StatelessWidget {
             PokemonDetailsRoute(pokemonDetails: pokemonDetails),
           ),
           onDoubleTap: () => onDoubleTap(pokemonDetails),
-          child: PokemonTileContent(pokemonDetails: pokemonDetails),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: Dimensions.sizeL,
+              top: Dimensions.sizeL,
+            ),
+            child: PokemonTileContent(pokemonDetails: pokemonDetails),
+          ),
         );
       },
     );

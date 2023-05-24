@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/core/extensions/build_context_extensions.dart';
-import 'package:pokedex_rest/core/strings/strings.dart';
 import 'package:pokedex_rest/features/search/presentation/widgets/search_widget.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
-import 'package:pokedex_rest/style/text_style_tokens.dart';
+import 'package:pokedex_rest/style/dimensions.dart';
 
 class PokemonListSliverAppBar extends StatelessWidget {
   final bool pinned;
@@ -23,21 +22,12 @@ class PokemonListSliverAppBar extends StatelessWidget {
       pinned: pinned,
       snap: snap,
       floating: floating,
-      expandedHeight: (context.screenHeight / 7),
-      backgroundColor: ColorTokens.secondaryColor,
-      flexibleSpace: FlexibleSpaceBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Flexible(
-              child: Text(
-                Strings.appBarHomePageTitle,
-                style: TextStyleTokens.mainTitleWhite,
-              ),
-            ),
-            const Flexible(child: SearchWidget()),
-          ],
-        ),
+      expandedHeight: (context.screenHeight / 10),
+      backgroundColor: ColorTokens.darkBackgroundColor,
+      flexibleSpace: const FlexibleSpaceBar(
+        titlePadding: EdgeInsets.all(Dimensions.sizeL),
+        expandedTitleScale: 2,
+        title: SearchWidget(),
         centerTitle: true,
       ),
     );
