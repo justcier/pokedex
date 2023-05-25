@@ -23,6 +23,7 @@ class PokemonListPage extends StatefulWidget {
 class _PokemonListPageState extends State<PokemonListPage> {
   final PokemonListCubit _pokemonListCubit = getIt<PokemonListCubit>();
   final ScrollController _scrollController = ScrollController();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -36,48 +37,53 @@ class _PokemonListPageState extends State<PokemonListPage> {
     _pokemonListCubit.close();
     _scrollController.removeListener(_fetchMoreDataListener);
     _scrollController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return CommonScaffold(
-      appBar: AppBar(
-        title: Text(
-          Strings.appBarHomePageTitle,
-          style: TextStyleTokens.mainTitleWhite,
+    return GestureDetector(
+      onTap: _focusNode.unfocus,
+      child: CommonScaffold(
+        appBar: AppBar(
+          title: Text(
+            Strings.appBarHomePageTitle,
+            style: TextStyleTokens.mainTitleWhite,
+          ),
+          backgroundColor: ColorTokens.secondaryColor,
         ),
-        backgroundColor: ColorTokens.secondaryColor,
-      ),
-      body: Center(
-        child: BlocBuilder<PokemonListCubit, PokemonListState>(
-          bloc: _pokemonListCubit,
-          builder: (_, PokemonListState state) {
-            final List<PokemonDetails>? pokemonDetailsList =
-                state.pokemonDetailsList;
+        body: Center(
+          child: BlocBuilder<PokemonListCubit, PokemonListState>(
+            bloc: _pokemonListCubit,
+            builder: (_, PokemonListState state) {
+              final List<PokemonDetails>? pokemonDetailsList =
+                  state.pokemonDetailsList;
 
-            if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
-              return const PokeballLoader();
-            } else if (pokemonDetailsList == null) {
-              return const SizedBox.shrink();
-            }
+              if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
+                return const PokeballLoader();
+              } else if (pokemonDetailsList == null) {
+                return const SizedBox.shrink();
+              }
 
-            return CustomScrollView(
-              slivers: [
-                const PokemonListSliverAppBar(
-                  pinned: false,
-                  snap: false,
-                  floating: true,
-                ),
-                PokemonListWidget(
-                  pokemonDetailsList: pokemonDetailsList,
-                  isLoading: state.isLoading,
-                  onDoubleTap:
-                      context.read<FavouritesCubit>().toggleFavouriteState,
-                ),
-              ],
-            );
-          },
+              return CustomScrollView(
+                slivers: [
+                  PokemonListSliverAppBar(
+                    pinned: false,
+                    snap: false,
+                    floating: true,
+                    focusNode: _focusNode,
+                  ),
+                  PokemonListWidget(
+                    pokemonDetailsList: pokemonDetailsList,
+                    isLoading: state.isLoading,
+                    onDoubleTap:
+                        context.read<FavouritesCubit>().toggleFavouriteState,
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

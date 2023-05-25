@@ -7,7 +7,7 @@ abstract class Strings {
   static const String expStatFullName = 'experience';
   static const String bottomNavigationBarOption1 = 'Home';
   static const String bottomNavigationBarOption2 = 'Favourites';
-  static const String searchHint = 'Choose your Pokemon!';
+  static const String searchLabel = 'Choose your Pokemon!';
 
   static String pokemonDetailWeightValue(int weight) {
     return '${weight / 10} kg';
