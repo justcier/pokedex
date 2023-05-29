@@ -2,7 +2,7 @@ import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_species/pokemon_species.dart';
 
 abstract class PokemonListRepository {
-  Future<PokemonDetails> getPokemonDetails(String id);
+  Future<PokemonDetails> getPokemonDetails(String idOrName);
 
   Future<PokemonSpecies> getPokemonSpecies(String id);
 

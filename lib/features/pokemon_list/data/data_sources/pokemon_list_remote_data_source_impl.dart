@@ -15,9 +15,10 @@ class PokemonListRemoteDataSourceImpl implements PokemonListRemoteDataSource {
   PokemonListRemoteDataSourceImpl({required this.networkService});
 
   @override
-  Future<PokemonDetails> getPokemonDetails(String id) async {
+  Future<PokemonDetails> getPokemonDetails(String idOrName) async {
     try {
-      final response = await networkService.get(Endpoints.pokemonDetails(id));
+      final response =
+          await networkService.get(Endpoints.pokemonDetails(idOrName));
       return PokemonDetails.fromJson(json.decode(response.body));
     } catch (error) {
       throw ServerException();
