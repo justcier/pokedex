@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokedex_rest/core/extensions/build_context_extensions.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
+import 'package:pokedex_rest/features/search/presentation/cubits/search_cubit.dart';
+import 'package:pokedex_rest/features/search/presentation/cubits/search_state.dart';
+import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
 import 'package:pokedex_rest/style/dimensions.dart';
 import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 class SearchWidget extends StatefulWidget {
   final FocusNode focusNode;
+
   const SearchWidget({
     required this.focusNode,
     Key? key,
@@ -17,44 +22,49 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
+  final SearchCubit _searchCubit = getIt<SearchCubit>();
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _searchCubit.close();
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-
-    @override
-    void initState() {
-      super.initState();
-      controller;
-    }
-
-    @override
-    void dispose() {
-      controller.dispose();
-      super.dispose();
-    }
-
     return SizedBox(
       height: (context.screenHeight / 30),
-      child: TextField(
-        focusNode: widget.focusNode,
-        controller: controller,
-        cursorColor: ColorTokens.primaryColor,
-        style: TextStyleTokens.mainDescription
-            .copyWith(color: ColorTokens.secondaryColor, fontSize: 8),
-        decoration: InputDecoration(
-          enabledBorder: _border,
-          focusedBorder: _border,
-          labelText: Strings.searchLabel,
-          labelStyle: TextStyleTokens.mainDescription.copyWith(
-              color: ColorTokens.secondaryColor,
-              overflow: TextOverflow.visible,
-              fontSize: 7),
-          suffixIcon: const Icon(
-            Icons.search,
-            size: 20,
-            color: ColorTokens.secondaryColor,
-          ),
-        ),
+      child: BlocBuilder<SearchCubit, SearchState>(
+        bloc: _searchCubit,
+        builder: (_, SearchState state) {
+          return TextField(
+            focusNode: widget.focusNode,
+            controller: _controller,
+            cursorColor: ColorTokens.primaryColor,
+            style: TextStyleTokens.mainDescription
+                .copyWith(color: ColorTokens.secondaryColor, fontSize: 8),
+            decoration: InputDecoration(
+              enabledBorder: _border,
+              focusedBorder: _border,
+              labelText: Strings.searchLabel,
+              labelStyle: TextStyleTokens.mainDescription.copyWith(
+                color: ColorTokens.secondaryColor,
+                overflow: TextOverflow.visible,
+                fontSize: 7,
+              ),
+              suffixIcon: GestureDetector(
+                onTap: () => _searchCubit.searchPokemonByName(_controller.text),
+                child: const Icon(
+                  Icons.search,
+                  size: 20,
+                  color: ColorTokens.secondaryColor,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

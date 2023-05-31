@@ -9,6 +9,8 @@ import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_l
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_sliver_app_bar.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
+import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_tile_content.dart';
+import 'package:pokedex_rest/features/search/presentation/cubits/search_state.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
 import 'package:pokedex_rest/style/text_style_tokens.dart';
@@ -59,6 +61,8 @@ class _PokemonListPageState extends State<PokemonListPage> {
             builder: (_, PokemonListState state) {
               final List<PokemonDetails>? pokemonDetailsList =
                   state.pokemonDetailsList;
+              final PokemonDetails? searchedPokemon =
+                  state.searchedPokemonDetails;
 
               if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
                 return const PokeballLoader();
@@ -74,12 +78,24 @@ class _PokemonListPageState extends State<PokemonListPage> {
                     floating: true,
                     focusNode: _focusNode,
                   ),
-                  PokemonListWidget(
-                    pokemonDetailsList: pokemonDetailsList,
-                    isLoading: state.isLoading,
-                    onDoubleTap:
-                        context.read<FavouritesCubit>().toggleFavouriteState,
-                  ),
+                  if (state.searchState == SearchStateStatus.loading)
+                    const SliverToBoxAdapter(child: PokeballLoader())
+                  else if (searchedPokemon != null)
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 300,
+                        child: PokemonTileContent(
+                          pokemonDetails: searchedPokemon,
+                        ),
+                      ),
+                    )
+                  else
+                    PokemonListWidget(
+                      pokemonDetailsList: pokemonDetailsList,
+                      isLoading: state.isLoading,
+                      onDoubleTap:
+                          context.read<FavouritesCubit>().toggleFavouriteState,
+                    ),
                 ],
               );
             },

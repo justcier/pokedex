@@ -19,6 +19,9 @@ mixin _$PokemonListState {
   PokemonListStateStatus get status => throw _privateConstructorUsedError;
   List<PokemonDetails>? get pokemonDetailsList =>
       throw _privateConstructorUsedError;
+  PokemonDetails? get searchedPokemonDetails =>
+      throw _privateConstructorUsedError;
+  SearchStateStatus? get searchState => throw _privateConstructorUsedError;
   int? get currentPage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,7 +38,11 @@ abstract class $PokemonListStateCopyWith<$Res> {
   $Res call(
       {PokemonListStateStatus status,
       List<PokemonDetails>? pokemonDetailsList,
+      PokemonDetails? searchedPokemonDetails,
+      SearchStateStatus? searchState,
       int? currentPage});
+
+  $PokemonDetailsCopyWith<$Res>? get searchedPokemonDetails;
 }
 
 /// @nodoc
@@ -53,6 +60,8 @@ class _$PokemonListStateCopyWithImpl<$Res, $Val extends PokemonListState>
   $Res call({
     Object? status = null,
     Object? pokemonDetailsList = freezed,
+    Object? searchedPokemonDetails = freezed,
+    Object? searchState = freezed,
     Object? currentPage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -64,11 +73,32 @@ class _$PokemonListStateCopyWithImpl<$Res, $Val extends PokemonListState>
           ? _value.pokemonDetailsList
           : pokemonDetailsList // ignore: cast_nullable_to_non_nullable
               as List<PokemonDetails>?,
+      searchedPokemonDetails: freezed == searchedPokemonDetails
+          ? _value.searchedPokemonDetails
+          : searchedPokemonDetails // ignore: cast_nullable_to_non_nullable
+              as PokemonDetails?,
+      searchState: freezed == searchState
+          ? _value.searchState
+          : searchState // ignore: cast_nullable_to_non_nullable
+              as SearchStateStatus?,
       currentPage: freezed == currentPage
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PokemonDetailsCopyWith<$Res>? get searchedPokemonDetails {
+    if (_value.searchedPokemonDetails == null) {
+      return null;
+    }
+
+    return $PokemonDetailsCopyWith<$Res>(_value.searchedPokemonDetails!,
+        (value) {
+      return _then(_value.copyWith(searchedPokemonDetails: value) as $Val);
+    });
   }
 }
 
@@ -83,7 +113,12 @@ abstract class _$$_PokemonListStateCopyWith<$Res>
   $Res call(
       {PokemonListStateStatus status,
       List<PokemonDetails>? pokemonDetailsList,
+      PokemonDetails? searchedPokemonDetails,
+      SearchStateStatus? searchState,
       int? currentPage});
+
+  @override
+  $PokemonDetailsCopyWith<$Res>? get searchedPokemonDetails;
 }
 
 /// @nodoc
@@ -99,6 +134,8 @@ class __$$_PokemonListStateCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? pokemonDetailsList = freezed,
+    Object? searchedPokemonDetails = freezed,
+    Object? searchState = freezed,
     Object? currentPage = freezed,
   }) {
     return _then(_$_PokemonListState(
@@ -110,6 +147,14 @@ class __$$_PokemonListStateCopyWithImpl<$Res>
           ? _value._pokemonDetailsList
           : pokemonDetailsList // ignore: cast_nullable_to_non_nullable
               as List<PokemonDetails>?,
+      searchedPokemonDetails: freezed == searchedPokemonDetails
+          ? _value.searchedPokemonDetails
+          : searchedPokemonDetails // ignore: cast_nullable_to_non_nullable
+              as PokemonDetails?,
+      searchState: freezed == searchState
+          ? _value.searchState
+          : searchState // ignore: cast_nullable_to_non_nullable
+              as SearchStateStatus?,
       currentPage: freezed == currentPage
           ? _value.currentPage
           : currentPage // ignore: cast_nullable_to_non_nullable
@@ -124,6 +169,8 @@ class _$_PokemonListState extends _PokemonListState {
   const _$_PokemonListState(
       {required this.status,
       final List<PokemonDetails>? pokemonDetailsList,
+      this.searchedPokemonDetails,
+      this.searchState,
       this.currentPage})
       : _pokemonDetailsList = pokemonDetailsList,
         super._();
@@ -142,11 +189,15 @@ class _$_PokemonListState extends _PokemonListState {
   }
 
   @override
+  final PokemonDetails? searchedPokemonDetails;
+  @override
+  final SearchStateStatus? searchState;
+  @override
   final int? currentPage;
 
   @override
   String toString() {
-    return 'PokemonListState(status: $status, pokemonDetailsList: $pokemonDetailsList, currentPage: $currentPage)';
+    return 'PokemonListState(status: $status, pokemonDetailsList: $pokemonDetailsList, searchedPokemonDetails: $searchedPokemonDetails, searchState: $searchState, currentPage: $currentPage)';
   }
 
   @override
@@ -157,13 +208,22 @@ class _$_PokemonListState extends _PokemonListState {
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
                 .equals(other._pokemonDetailsList, _pokemonDetailsList) &&
+            (identical(other.searchedPokemonDetails, searchedPokemonDetails) ||
+                other.searchedPokemonDetails == searchedPokemonDetails) &&
+            (identical(other.searchState, searchState) ||
+                other.searchState == searchState) &&
             (identical(other.currentPage, currentPage) ||
                 other.currentPage == currentPage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_pokemonDetailsList), currentPage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_pokemonDetailsList),
+      searchedPokemonDetails,
+      searchState,
+      currentPage);
 
   @JsonKey(ignore: true)
   @override
@@ -176,6 +236,8 @@ abstract class _PokemonListState extends PokemonListState {
   const factory _PokemonListState(
       {required final PokemonListStateStatus status,
       final List<PokemonDetails>? pokemonDetailsList,
+      final PokemonDetails? searchedPokemonDetails,
+      final SearchStateStatus? searchState,
       final int? currentPage}) = _$_PokemonListState;
   const _PokemonListState._() : super._();
 
@@ -183,6 +245,10 @@ abstract class _PokemonListState extends PokemonListState {
   PokemonListStateStatus get status;
   @override
   List<PokemonDetails>? get pokemonDetailsList;
+  @override
+  PokemonDetails? get searchedPokemonDetails;
+  @override
+  SearchStateStatus? get searchState;
   @override
   int? get currentPage;
   @override
