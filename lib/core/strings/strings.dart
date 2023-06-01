@@ -8,6 +8,8 @@ abstract class Strings {
   static const String bottomNavigationBarOption1 = 'Home';
   static const String bottomNavigationBarOption2 = 'Favourites';
   static const String searchLabel = 'Choose your Pokemon!';
+  static const String backButton = 'Back';
+  static const String goToDetailsButton = 'Go to details!';
 
   static String pokemonDetailWeightValue(int weight) {
     return '${weight / 10} kg';

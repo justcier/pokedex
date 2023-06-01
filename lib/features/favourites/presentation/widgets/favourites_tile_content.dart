@@ -32,7 +32,10 @@ class FavouritesTileContent extends StatelessWidget {
         children: [
           Stack(children: [
             Image.network(pokemonDetails.sprites.frontDefault),
-            FavouriteIcon(pokemonDetails: pokemonDetails),
+            FavouriteIcon(
+              pokemonDetails: pokemonDetails,
+              height: Dimensions.sizeXXL,
+            ),
           ]),
           Flexible(
             child: PokemonSummary(pokemonDetails: pokemonDetails),

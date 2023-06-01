@@ -9,10 +9,11 @@ import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_l
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_sliver_app_bar.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
-import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_tile_content.dart';
 import 'package:pokedex_rest/features/search/presentation/cubits/search_state.dart';
+import 'package:pokedex_rest/features/search/presentation/widgets/search_tile_content.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
+import 'package:pokedex_rest/style/dimensions.dart';
 import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 class PokemonListPage extends StatefulWidget {
@@ -82,9 +83,9 @@ class _PokemonListPageState extends State<PokemonListPage> {
                     const SliverToBoxAdapter(child: PokeballLoader())
                   else if (searchedPokemon != null)
                     SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: 300,
-                        child: PokemonTileContent(
+                      child: Container(
+                        padding: const EdgeInsets.all(Dimensions.sizeM),
+                        child: SearchTileContent(
                           pokemonDetails: searchedPokemon,
                         ),
                       ),

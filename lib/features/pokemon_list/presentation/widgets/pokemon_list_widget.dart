@@ -40,10 +40,7 @@ class PokemonListWidget extends StatelessWidget {
           ),
           onDoubleTap: () => onDoubleTap(pokemonDetails),
           child: Padding(
-            padding: const EdgeInsets.only(
-              left: Dimensions.sizeL,
-              top: Dimensions.sizeL,
-            ),
+            padding: const EdgeInsets.only(top: Dimensions.sizeL),
             child: PokemonTileContent(pokemonDetails: pokemonDetails),
           ),
         );
