@@ -19,4 +19,11 @@ class SearchCubit extends Cubit<SearchState> {
       pokemonDetails: pokemonSearchedByName,
     ));
   }
+
+  void clearSearch() {
+    emit(state.copyWith(
+      status: SearchStateStatus.loaded,
+      pokemonDetails: null,
+    ));
+  }
 }

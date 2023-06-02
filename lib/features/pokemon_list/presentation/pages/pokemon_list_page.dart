@@ -26,6 +26,7 @@ class PokemonListPage extends StatefulWidget {
 class _PokemonListPageState extends State<PokemonListPage> {
   final PokemonListCubit _pokemonListCubit = getIt<PokemonListCubit>();
   final ScrollController _scrollController = ScrollController();
+  final TextEditingController _textEditingController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
   @override
@@ -40,6 +41,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
     _pokemonListCubit.close();
     _scrollController.removeListener(_fetchMoreDataListener);
     _scrollController.dispose();
+    _textEditingController.dispose();
     _focusNode.dispose();
     super.dispose();
   }
@@ -77,6 +79,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
                     pinned: false,
                     snap: false,
                     floating: true,
+                    controller: _textEditingController,
                     focusNode: _focusNode,
                   ),
                   if (state.searchState == SearchStateStatus.loading)
@@ -87,6 +90,8 @@ class _PokemonListPageState extends State<PokemonListPage> {
                         padding: const EdgeInsets.all(Dimensions.sizeM),
                         child: SearchTileContent(
                           pokemonDetails: searchedPokemon,
+                          pokemonListCubit: _pokemonListCubit,
+                          clearSearchField: _textEditingController.clear,
                         ),
                       ),
                     )

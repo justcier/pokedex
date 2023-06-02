@@ -10,10 +10,12 @@ import 'package:pokedex_rest/style/dimensions.dart';
 import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 class SearchWidget extends StatefulWidget {
+  final TextEditingController controller;
   final FocusNode focusNode;
 
   const SearchWidget({
     required this.focusNode,
+    required this.controller,
     Key? key,
   }) : super(key: key);
 
@@ -23,12 +25,10 @@ class SearchWidget extends StatefulWidget {
 
 class _SearchWidgetState extends State<SearchWidget> {
   final SearchCubit _searchCubit = getIt<SearchCubit>();
-  final TextEditingController _controller = TextEditingController();
 
   @override
   void dispose() {
     _searchCubit.close();
-    _controller.dispose();
     super.dispose();
   }
 
@@ -41,7 +41,9 @@ class _SearchWidgetState extends State<SearchWidget> {
         builder: (_, SearchState state) {
           return TextField(
             focusNode: widget.focusNode,
-            controller: _controller,
+            controller: widget.controller,
+            textInputAction: TextInputAction.search,
+            onSubmitted: (_) => triggerSearch(),
             cursorColor: ColorTokens.primaryColor,
             style: TextStyleTokens.mainDescription
                 .copyWith(color: ColorTokens.secondaryColor, fontSize: 8),
@@ -55,7 +57,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 fontSize: 7,
               ),
               suffixIcon: GestureDetector(
-                onTap: () => _searchCubit.searchPokemonByName(_controller.text),
+                onTap: triggerSearch,
                 child: const Icon(
                   Icons.search,
                   size: 20,
@@ -75,4 +77,9 @@ class _SearchWidgetState extends State<SearchWidget> {
           width: Dimensions.sizeS,
         ),
       );
+
+  void triggerSearch() {
+    FocusScope.of(context).requestFocus(FocusNode());
+    _searchCubit.searchPokemonByName(widget.controller.text);
+  }
 }

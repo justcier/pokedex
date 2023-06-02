@@ -8,12 +8,14 @@ class PokemonListSliverAppBar extends StatelessWidget {
   final bool pinned;
   final bool snap;
   final bool floating;
+  final TextEditingController controller;
   final FocusNode focusNode;
 
   const PokemonListSliverAppBar({
     required this.pinned,
     required this.snap,
     required this.floating,
+    required this.controller,
     required this.focusNode,
     Key? key,
   }) : super(key: key);
@@ -29,7 +31,10 @@ class PokemonListSliverAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.all(Dimensions.sizeL),
         expandedTitleScale: 2,
-        title: SearchWidget(focusNode: focusNode),
+        title: SearchWidget(
+          controller: controller,
+          focusNode: focusNode,
+        ),
         centerTitle: true,
       ),
     );
