@@ -68,6 +68,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                     const SizedBox(width: Dimensions.sizeM),
                     FavouriteIcon(
                       pokemonDetails: widget.pokemonDetails,
+                      height: Dimensions.sizeXXXL,
                     ),
                   ],
                 ),

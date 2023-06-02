@@ -1,11 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex_rest/common/widgets/favourite_icon.dart';
 import 'package:pokedex_rest/common/widgets/pokemon_button.dart';
+import 'package:pokedex_rest/common/widgets/pokemon_hero.dart';
 import 'package:pokedex_rest/common/widgets/pokemon_number.dart';
 import 'package:pokedex_rest/common/widgets/pokemon_summary.dart';
 import 'package:pokedex_rest/core/extensions/build_context_extensions.dart';
 import 'package:pokedex_rest/core/strings/strings.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
+import 'package:pokedex_rest/services/navigation_service/navigation_service.dart';
 import 'package:pokedex_rest/style/dimensions.dart';
 import 'package:pokedex_rest/style/text_style_tokens.dart';
 
@@ -41,9 +44,9 @@ class SearchTileContent extends StatelessWidget {
           ),
           SizedBox(
             height: context.screenHeight / 3,
-            child: Image.network(
-              pokemonDetails.sprites.frontDefault,
-              fit: BoxFit.fill,
+            child: PokemonHero(
+              pokemonId: pokemonDetails.id,
+              pokemonImageUrl: pokemonDetails.sprites.frontDefault,
             ),
           ),
           PokemonSummary(pokemonDetails: pokemonDetails),
@@ -56,7 +59,9 @@ class SearchTileContent extends StatelessWidget {
               ),
               PokemonButton(
                 text: Strings.goToDetailsButton,
-                onTap: () {},
+                onTap: () => context.router.push(
+                  PokemonDetailsRoute(pokemonDetails: pokemonDetails),
+                ),
               ),
             ],
           ),
