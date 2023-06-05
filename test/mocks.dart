@@ -7,6 +7,7 @@ import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_stored_f
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/remove_from_favourites_use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/store_favourites_use_case.dart';
 import 'package:pokedex_rest/features/pokemon_list/domain/use_cases/get_pokemon_details_use_case.dart';
+import 'package:pokedex_rest/features/search/presentation/cubits/search_cubit.dart';
 import 'package:pokedex_rest/services/network_service/network_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,3 +41,6 @@ class MockRemoveFromFavouritesUseCase extends Mock
 class MockNetworkService extends Mock implements NetworkService {}
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
+
+// Cubits
+class MockSearchCubit extends Mock implements SearchCubit {}

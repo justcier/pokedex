@@ -11,7 +11,7 @@ class GetPokemonDetailsUseCase
   GetPokemonDetailsUseCase(this._pokemonRepository);
 
   @override
-  Future<PokemonDetails> call(String id) {
-    return _pokemonRepository.getPokemonDetails(id);
+  Future<PokemonDetails> call(String idOrName) {
+    return _pokemonRepository.getPokemonDetails(idOrName);
   }
 }
