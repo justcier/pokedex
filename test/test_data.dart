@@ -6,6 +6,7 @@ import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_species
 import 'fixtures/fixture_reader.dart';
 
 const String tId = '1';
+const String tName = 'bulbasaur';
 
 final PokemonDetails tPokemonDetails = PokemonDetails.fromJson(
   jsonDecode(fixture(Fixtures.pokemonDetails)),
