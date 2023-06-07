@@ -10,6 +10,7 @@ import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_l
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_sliver_app_bar.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
 import 'package:pokedex_rest/features/search/presentation/cubits/search_state.dart';
+import 'package:pokedex_rest/features/search/presentation/widgets/error_view_widget.dart';
 import 'package:pokedex_rest/features/search/presentation/widgets/search_tile_content.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
@@ -84,6 +85,13 @@ class _PokemonListPageState extends State<PokemonListPage> {
                   ),
                   if (state.searchState == SearchStateStatus.loading)
                     const SliverToBoxAdapter(child: PokeballLoader())
+                  else if (state.searchState == SearchStateStatus.notFoundError)
+                    SliverToBoxAdapter(
+                      child: ErrorViewWidget(
+                        pokemonListCubit: _pokemonListCubit,
+                        controller: _textEditingController,
+                      ),
+                    )
                   else if (searchedPokemon != null)
                     SliverToBoxAdapter(
                       child: Container(

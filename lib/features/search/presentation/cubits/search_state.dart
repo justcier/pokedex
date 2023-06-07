@@ -8,6 +8,7 @@ enum SearchStateStatus {
   loading,
   loaded,
   error,
+  notFoundError,
 }
 
 @freezed

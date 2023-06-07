@@ -18,4 +18,9 @@ abstract class Strings {
   static String pokemonDetailHeightValue(int height) {
     return '${height / 10} m';
   }
+
+  static String errorViewWidgetMessage(String textFieldValue) {
+    return 'Pokemon with name:\n\n \'$textFieldValue\' \n\ndoes not exist!'
+        '\n\nTry to search again.';
+  }
 }

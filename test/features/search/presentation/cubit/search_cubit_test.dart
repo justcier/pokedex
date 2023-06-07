@@ -47,6 +47,7 @@ void main() {
         act: (cubit) => cubit.clearSearch(),
         expect: () => [
           initialState.copyWith(
+            status: SearchStateStatus.loaded,
             pokemonDetails: null,
           ),
         ],
