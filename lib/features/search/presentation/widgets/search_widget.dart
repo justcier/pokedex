@@ -24,7 +24,13 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-  final SearchCubit _searchCubit = getIt<SearchCubit>();
+  late SearchCubit _searchCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchCubit = getIt<SearchCubit>();
+  }
 
   @override
   void dispose() {

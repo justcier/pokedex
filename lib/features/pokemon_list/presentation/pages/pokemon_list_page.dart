@@ -75,6 +75,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
               }
 
               return CustomScrollView(
+                controller: _scrollController,
                 slivers: [
                   PokemonListSliverAppBar(
                     pinned: false,
