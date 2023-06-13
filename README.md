@@ -5,12 +5,17 @@ application which allows users to search for pokemon.
 
 ## Project presentation
 ### App screens
-| Home page  | Pokemon Details Page | Favourites Page |
+| Home page | Pokemon Details Page | Favourites Page | 
 | ------------- | ------------- | ------------- |
-| <img width="272" alt="image" src="https://github.com/justcier/pokedex/assets/71925819/b15cf729-2855-4628-9a4d-6513c8e3faab">|<img width="272" alt="image" src="https://github.com/justcier/pokedex/assets/71925819/299e7ecc-88bc-4146-968f-fbc79aadbf45">|<img width="276" alt="Screenshot 2023-05-09 at 12 40 40" src="https://github.com/justcier/pokedex/assets/71925819/afb4c94c-9df5-4d74-9e76-eab6f626735e">|
+|<img width="294" alt="Screenshot 2023-06-13 at 15 28 31" src="https://github.com/justcier/pokedex/assets/71925819/09e0f65e-c651-48cc-8500-861aaff1b309">|<img width="290" alt="Screenshot 2023-06-13 at 15 35 41" src="https://github.com/justcier/pokedex/assets/71925819/f9dbde6a-d214-4793-9978-84e083380df1">|<img width="293" alt="Screenshot 2023-06-13 at 15 35 14" src="https://github.com/justcier/pokedex/assets/71925819/6dc019f1-fb6e-4033-a544-720394e0d1e7">|<img width="291" alt="Screenshot 2023-06-13 at 15 28 57" src="https://github.com/justcier/pokedex/assets/71925819/38a0d099-1bb6-4834-ab4f-c36370d79f3d">|<img width="288" alt="Screenshot 2023-06-13 at 15 29 13" src="https://github.com/justcier/pokedex/assets/71925819/33cc89ce-22b1-4719-8a44-d0b75b222e7f">|
+
+| Search | Search view with wrong Pokemon name|
+|------------- |------------- |
+|<img width="291" alt="Screenshot 2023-06-13 at 15 28 57" src="https://github.com/justcier/pokedex/assets/71925819/38a0d099-1bb6-4834-ab4f-c36370d79f3d">|<img width="288" alt="Screenshot 2023-06-13 at 15 29 13" src="https://github.com/justcier/pokedex/assets/71925819/33cc89ce-22b1-4719-8a44-d0b75b222e7f">|
 
 ### App showcase
-https://github.com/justcier/pokedex/assets/71925819/5763a9ba-4412-4848-82fb-1590ed186e90
+
+https://github.com/justcier/pokedex/assets/71925819/9aeff68f-d399-47e1-b493-33d829983184
 
 
 ## Technology stack and main dependencies
