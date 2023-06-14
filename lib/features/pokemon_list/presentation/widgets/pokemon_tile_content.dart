@@ -20,6 +20,7 @@ class PokemonTileContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.topCenter,
       children: [
         Container(
           decoration: BoxDecoration(
@@ -48,7 +49,7 @@ class PokemonTileContent extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(
-            left: Dimensions.sizeL,
+            left: Dimensions.sizeXXL,
             right: Dimensions.sizeXXL,
             top: Dimensions.sizeML,
           ),
@@ -57,6 +58,7 @@ class PokemonTileContent extends StatelessWidget {
             children: [
               FavouriteIcon(
                 pokemonDetails: pokemonDetails,
+                height: Dimensions.sizeXXL,
               ),
               PokemonNumber(
                 id: pokemonDetails.id,

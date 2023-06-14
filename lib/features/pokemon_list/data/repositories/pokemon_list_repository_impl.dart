@@ -16,8 +16,8 @@ class PokemonListRepositoryImpl implements PokemonListRepository {
   });
 
   @override
-  Future<PokemonDetails> getPokemonDetails(String id) {
-    return pokemonListRemoteDataSource.getPokemonDetails(id);
+  Future<PokemonDetails> getPokemonDetails(String idOrName) {
+    return pokemonListRemoteDataSource.getPokemonDetails(idOrName);
   }
 
   @override

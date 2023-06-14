@@ -7,9 +7,14 @@ import 'package:pokedex_rest/features/favourites/presentation/cubits/favourites_
 import 'package:pokedex_rest/features/pokemon_list/domain/models/pokemon_details/pokemon_details.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_cubit.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/cubits/pokemon_list_state.dart';
+import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_sliver_app_bar.dart';
 import 'package:pokedex_rest/features/pokemon_list/presentation/widgets/pokemon_list_widget.dart';
+import 'package:pokedex_rest/features/search/presentation/cubits/search_state.dart';
+import 'package:pokedex_rest/features/search/presentation/widgets/error_view_widget.dart';
+import 'package:pokedex_rest/features/search/presentation/widgets/search_tile_content.dart';
 import 'package:pokedex_rest/services/injection_service/injection_service.dart';
 import 'package:pokedex_rest/style/color_tokens.dart';
+import 'package:pokedex_rest/style/dimensions.dart';
 import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 class PokemonListPage extends StatefulWidget {
@@ -22,6 +27,8 @@ class PokemonListPage extends StatefulWidget {
 class _PokemonListPageState extends State<PokemonListPage> {
   final PokemonListCubit _pokemonListCubit = getIt<PokemonListCubit>();
   final ScrollController _scrollController = ScrollController();
+  final TextEditingController _textEditingController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -35,39 +42,80 @@ class _PokemonListPageState extends State<PokemonListPage> {
     _pokemonListCubit.close();
     _scrollController.removeListener(_fetchMoreDataListener);
     _scrollController.dispose();
+    _textEditingController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return CommonScaffold(
-      appBar: AppBar(
-        title: Text(
-          Strings.appBarHomePageTitle,
-          style: TextStyleTokens.mainTitleWhite,
+    return GestureDetector(
+      onTap: _focusNode.unfocus,
+      child: CommonScaffold(
+        appBar: AppBar(
+          title: Text(
+            Strings.appBarHomePageTitle,
+            style: TextStyleTokens.mainTitleWhite,
+          ),
+          backgroundColor: ColorTokens.secondaryColor,
         ),
-        backgroundColor: ColorTokens.secondaryColor,
-      ),
-      body: Center(
-        child: BlocBuilder<PokemonListCubit, PokemonListState>(
-          bloc: _pokemonListCubit,
-          builder: (_, PokemonListState state) {
-            final List<PokemonDetails>? pokemonDetailsList =
-                state.pokemonDetailsList;
+        body: Center(
+          child: BlocBuilder<PokemonListCubit, PokemonListState>(
+            bloc: _pokemonListCubit,
+            builder: (_, PokemonListState state) {
+              final List<PokemonDetails>? pokemonDetailsList =
+                  state.pokemonDetailsList;
+              final PokemonDetails? searchedPokemon =
+                  state.searchedPokemonDetails;
 
-            if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
-              return const PokeballLoader();
-            } else if (pokemonDetailsList == null) {
-              return const SizedBox.shrink();
-            }
+              if (state.isLoading && (pokemonDetailsList?.isEmpty ?? true)) {
+                return const PokeballLoader();
+              } else if (pokemonDetailsList == null) {
+                return const SizedBox.shrink();
+              }
 
-            return PokemonListWidget(
-              pokemonDetailsList: pokemonDetailsList,
-              gridViewScrollController: _scrollController,
-              isLoading: state.isLoading,
-              onDoubleTap: context.read<FavouritesCubit>().toggleFavouriteState,
-            );
-          },
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  PokemonListSliverAppBar(
+                    pinned: false,
+                    snap: false,
+                    floating: true,
+                    controller: _textEditingController,
+                    focusNode: _focusNode,
+                  ),
+                  if (state.searchState == SearchStateStatus.loading)
+                    const SliverToBoxAdapter(child: PokeballLoader())
+                  else if (state.searchState == SearchStateStatus.notFoundError)
+                    SliverToBoxAdapter(
+                      child: ErrorViewWidget(
+                        pokemonListCubit: _pokemonListCubit,
+                        errorMessage: Strings.errorViewWidgetMessage(
+                            _textEditingController.text),
+                        onTap: clearSearchFieldOnTap,
+                      ),
+                    )
+                  else if (searchedPokemon != null)
+                    SliverToBoxAdapter(
+                      child: Container(
+                        padding: const EdgeInsets.all(Dimensions.sizeM),
+                        child: SearchTileContent(
+                          pokemonDetails: searchedPokemon,
+                          onTap: clearSearchFieldOnTap,
+                        ),
+                      ),
+                    )
+                  else
+                    PokemonListWidget(
+                      pokemonDetailsList: pokemonDetailsList,
+                      isLoading: state.isLoading,
+                      onDoubleTap:
+                          context.read<FavouritesCubit>().toggleFavouriteState,
+                    ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -77,5 +125,10 @@ class _PokemonListPageState extends State<PokemonListPage> {
     if (_scrollController.position.extentAfter == 0) {
       _pokemonListCubit.fetchNextPage();
     }
+  }
+
+  void clearSearchFieldOnTap() {
+    _textEditingController.clear();
+    _pokemonListCubit.searchCubit.clearSearch();
   }
 }

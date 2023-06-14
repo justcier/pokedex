@@ -20,6 +20,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    FavouritesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FavouritesPage(),
+      );
+    },
     PokemonDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<PokemonDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -28,12 +34,6 @@ abstract class _$AppRouter extends RootStackRouter {
           pokemonDetails: args.pokemonDetails,
           key: args.key,
         ),
-      );
-    },
-    FavouritesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const FavouritesPage(),
       );
     },
   };
@@ -49,6 +49,20 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FavouritesPage]
+class FavouritesRoute extends PageRouteInfo<void> {
+  const FavouritesRoute({List<PageRouteInfo>? children})
+      : super(
+          FavouritesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FavouritesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -89,18 +103,4 @@ class PokemonDetailsRouteArgs {
   String toString() {
     return 'PokemonDetailsRouteArgs{pokemonDetails: $pokemonDetails, key: $key}';
   }
-}
-
-/// generated route for
-/// [FavouritesPage]
-class FavouritesRoute extends PageRouteInfo<void> {
-  const FavouritesRoute({List<PageRouteInfo>? children})
-      : super(
-          FavouritesRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'FavouritesRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }

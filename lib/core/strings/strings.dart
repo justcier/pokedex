@@ -7,6 +7,9 @@ abstract class Strings {
   static const String expStatFullName = 'experience';
   static const String bottomNavigationBarOption1 = 'Home';
   static const String bottomNavigationBarOption2 = 'Favourites';
+  static const String searchLabel = 'Choose your Pokemon!';
+  static const String backButton = 'Back';
+  static const String goToDetailsButton = 'Go to details!';
 
   static String pokemonDetailWeightValue(int weight) {
     return '${weight / 10} kg';
@@ -14,5 +17,10 @@ abstract class Strings {
 
   static String pokemonDetailHeightValue(int height) {
     return '${height / 10} m';
+  }
+
+  static String errorViewWidgetMessage(String textFieldValue) {
+    return 'Pokemon with name: "$textFieldValue" does not exist! '
+        'Try to search again.';
   }
 }
