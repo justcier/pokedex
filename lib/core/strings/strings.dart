@@ -20,7 +20,7 @@ abstract class Strings {
   }
 
   static String errorViewWidgetMessage(String textFieldValue) {
-    return 'Pokemon with name:\n\n \'$textFieldValue\' \n\ndoes not exist!'
-        '\n\nTry to search again.';
+    return 'Pokemon with name: "$textFieldValue" does not exist! '
+        'Try to search again.';
   }
 }

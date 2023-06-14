@@ -5,7 +5,7 @@ import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 class PokemonButton extends StatelessWidget {
   final String text;
-  final Function() onTap;
+  final VoidCallback onTap;
 
   const PokemonButton({
     required this.text,
@@ -19,7 +19,6 @@ class PokemonButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(Dimensions.sizeXL),
-        margin: const EdgeInsets.all(Dimensions.sizeXL),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(Dimensions.sizeXL),

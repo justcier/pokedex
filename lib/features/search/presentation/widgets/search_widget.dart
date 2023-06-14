@@ -24,13 +24,7 @@ class SearchWidget extends StatefulWidget {
 }
 
 class _SearchWidgetState extends State<SearchWidget> {
-  late SearchCubit _searchCubit;
-
-  @override
-  void initState() {
-    super.initState();
-    _searchCubit = getIt<SearchCubit>();
-  }
+  final SearchCubit _searchCubit = getIt<SearchCubit>();
 
   @override
   void dispose() {
@@ -51,17 +45,12 @@ class _SearchWidgetState extends State<SearchWidget> {
             textInputAction: TextInputAction.search,
             onSubmitted: (_) => triggerSearch(),
             cursorColor: ColorTokens.primaryColor,
-            style: TextStyleTokens.mainDescription
-                .copyWith(color: ColorTokens.secondaryColor, fontSize: 8),
+            style: TextStyleTokens.mainDescriptionSmall,
             decoration: InputDecoration(
               enabledBorder: _border,
               focusedBorder: _border,
               labelText: Strings.searchLabel,
-              labelStyle: TextStyleTokens.mainDescription.copyWith(
-                color: ColorTokens.secondaryColor,
-                overflow: TextOverflow.visible,
-                fontSize: 7,
-              ),
+              labelStyle: TextStyleTokens.mainDescriptionSmall,
               suffixIcon: GestureDetector(
                 onTap: triggerSearch,
                 child: const Icon(

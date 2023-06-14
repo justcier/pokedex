@@ -7,11 +7,13 @@ import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 class ErrorViewWidget extends StatelessWidget {
   final PokemonListCubit pokemonListCubit;
-  final TextEditingController controller;
+  final String errorMessage;
+  final VoidCallback onTap;
 
   const ErrorViewWidget({
     required this.pokemonListCubit,
-    required this.controller,
+    required this.errorMessage,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -20,19 +22,16 @@ class ErrorViewWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(Dimensions.sizeXL),
+          padding: const EdgeInsets.all(Dimensions.sizeXXXL),
           child: Text(
-            Strings.errorViewWidgetMessage(controller.text),
+            errorMessage,
             style:
                 TextStyleTokens.mainTitle.copyWith(fontSize: Dimensions.sizeXL),
           ),
         ),
         PokemonButton(
           text: Strings.backButton,
-          onTap: () {
-            controller.clear();
-            pokemonListCubit.searchCubit.clearSearch();
-          },
+          onTap: onTap,
         ),
       ],
     );

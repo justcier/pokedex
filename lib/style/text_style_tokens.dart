@@ -24,6 +24,11 @@ class TextStyleTokens {
   static TextStyle mainTitleWhite =
       _main.copyWith(color: ColorTokens.mainFontColor);
 
+  static TextStyle mainTitleMedium = _main.copyWith(
+    fontSize: Dimensions.sizeXL,
+    color: ColorTokens.secondaryColor,
+  );
+
   static TextStyle mainTitleBig = _main.copyWith(
     fontSize: Dimensions.sizeXXL,
     color: ColorTokens.secondaryColor,
@@ -31,4 +36,10 @@ class TextStyleTokens {
 
   static TextStyle mainDescription =
       description.copyWith(color: ColorTokens.primaryColor);
+
+  static TextStyle mainDescriptionSmall = description.copyWith(
+    color: ColorTokens.secondaryColor,
+    fontSize: Dimensions.sizeML,
+    overflow: TextOverflow.visible,
+  );
 }

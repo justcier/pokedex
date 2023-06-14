@@ -7,6 +7,7 @@ import 'package:pokedex_rest/style/text_style_tokens.dart';
 
 class PokemonSummary extends StatelessWidget {
   final PokemonDetails pokemonDetails;
+
   const PokemonSummary({
     required this.pokemonDetails,
     Key? key,

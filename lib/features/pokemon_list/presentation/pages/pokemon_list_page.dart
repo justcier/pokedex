@@ -90,7 +90,12 @@ class _PokemonListPageState extends State<PokemonListPage> {
                     SliverToBoxAdapter(
                       child: ErrorViewWidget(
                         pokemonListCubit: _pokemonListCubit,
-                        controller: _textEditingController,
+                        errorMessage: Strings.errorViewWidgetMessage(
+                            _textEditingController.text),
+                        onTap: () {
+                          _textEditingController.clear();
+                          _pokemonListCubit.searchCubit.clearSearch();
+                        },
                       ),
                     )
                   else if (searchedPokemon != null)
@@ -99,8 +104,10 @@ class _PokemonListPageState extends State<PokemonListPage> {
                         padding: const EdgeInsets.all(Dimensions.sizeM),
                         child: SearchTileContent(
                           pokemonDetails: searchedPokemon,
-                          pokemonListCubit: _pokemonListCubit,
-                          clearSearchField: _textEditingController.clear,
+                          onTap: () {
+                            _textEditingController.clear();
+                            _pokemonListCubit.searchCubit.clearSearch();
+                          },
                         ),
                       ),
                     )
