@@ -92,10 +92,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
                         pokemonListCubit: _pokemonListCubit,
                         errorMessage: Strings.errorViewWidgetMessage(
                             _textEditingController.text),
-                        onTap: () {
-                          _textEditingController.clear();
-                          _pokemonListCubit.searchCubit.clearSearch();
-                        },
+                        onTap: clearSearchFieldOnTap,
                       ),
                     )
                   else if (searchedPokemon != null)
@@ -104,10 +101,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
                         padding: const EdgeInsets.all(Dimensions.sizeM),
                         child: SearchTileContent(
                           pokemonDetails: searchedPokemon,
-                          onTap: () {
-                            _textEditingController.clear();
-                            _pokemonListCubit.searchCubit.clearSearch();
-                          },
+                          onTap: clearSearchFieldOnTap,
                         ),
                       ),
                     )
@@ -131,5 +125,10 @@ class _PokemonListPageState extends State<PokemonListPage> {
     if (_scrollController.position.extentAfter == 0) {
       _pokemonListCubit.fetchNextPage();
     }
+  }
+
+  void clearSearchFieldOnTap() {
+    _textEditingController.clear();
+    _pokemonListCubit.searchCubit.clearSearch();
   }
 }
